@@ -5,6 +5,7 @@ import ftc.shift.sample.models.Group;
 import ftc.shift.sample.models.User;
 import ftc.shift.sample.services.UserService;
 import ftc.shift.sample.util.IdFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -16,9 +17,11 @@ import java.util.Map;
 public class InMemoryGroupRepository implements GroupRepository {
 
     private Map<String, Group> groupCache = new HashMap<>();
-    private UserService userService;
+    private final UserService userService;
 
-    public InMemoryGroupRepository() {
+    @Autowired
+    public InMemoryGroupRepository(UserService userService) {
+        this.userService = userService;
     }
 
     @Override

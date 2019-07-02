@@ -4,4 +4,6 @@ import ftc.shift.sample.models.User;
 
 public interface UserRepository {
     User getUser(String userId);
+
+    User createUser(User user);
 }

@@ -17,4 +17,8 @@ public class UserService {
     public User provideUser(String userId) {
         return userRepository.getUser(userId);
     }
+
+    public User createUser(User user) {
+        return userRepository.createUser(user);
+    }
 }
