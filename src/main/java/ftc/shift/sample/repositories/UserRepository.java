@@ -6,4 +6,8 @@ public interface UserRepository {
     User getUser(String userId);
 
     User createUser(User user);
+
+    boolean containsName(String name);
+
+    User getUserbyName(String name);
 }

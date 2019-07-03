@@ -1,5 +1,6 @@
 package ftc.shift.sample.services;
 
+import ftc.shift.sample.exception.NotFoundException;
 import ftc.shift.sample.models.User;
 import ftc.shift.sample.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,13 @@ public class UserService {
 
     public User createUser(User user) {
         return userRepository.createUser(user);
+    }
+
+    public boolean isRegistered(User user){
+        return userRepository.containsName(user.getName());
+    }
+
+    public User provideUserByName(String name) {
+        return userRepository.getUserbyName(name);
     }
 }

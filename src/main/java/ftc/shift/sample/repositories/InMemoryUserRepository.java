@@ -13,6 +13,11 @@ public class InMemoryUserRepository implements UserRepository {
 
     private static final Map<String, User> userCache = new HashMap<>();
 
+    public InMemoryUserRepository() {
+        this.createUser(new User("", "Vasya"));
+        this.createUser(new User("", "Anton"));
+    }
+
     @Override
     public User getUser(String userId) {
         if (!userCache.containsKey(userId)) {
@@ -26,6 +31,25 @@ public class InMemoryUserRepository implements UserRepository {
         user.setId(String.valueOf(IdFactory.getNewId()));
         userCache.put(user.getId(), user);
         return user;
+    }
+
+    @Override
+    public boolean containsName(String name) {
+        for (User value : userCache.values()) {
+            if (value.getName().equals(name))
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public User getUserbyName(String name) {
+        for (User user : userCache.values()) {
+            if (name.equals(user.getName())) {
+                return user;
+            }
+        }
+        return null;
     }
 
 
