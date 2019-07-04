@@ -3,6 +3,7 @@ package ftc.shift.sample.repositories;
 import ftc.shift.sample.exception.NotFoundException;
 import ftc.shift.sample.models.Group;
 import ftc.shift.sample.models.User;
+import ftc.shift.sample.repositories.storages.GroupStorage;
 import ftc.shift.sample.services.UserService;
 import ftc.shift.sample.util.IdFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class InMemoryGroupRepository implements GroupRepository {
             throw new NotFoundException();
         }
         Group oldGroup = groupCache.get(groupId);
-        oldGroup.setName(group.getName());
+        oldGroup.setTitle(group.getTitle());
         return oldGroup;
     }
 
@@ -54,6 +55,7 @@ public class InMemoryGroupRepository implements GroupRepository {
         group.setHost(userService.provideUser(userId));
         group.setStarted(false);
         group.setFinished(false);
+        group.getAllParticipants().clear();
         groupCache.put(group.getId(), group);
         return group;
     }
@@ -75,5 +77,8 @@ public class InMemoryGroupRepository implements GroupRepository {
         }
 
         return result;
+    }
+
+    public void saveState() {
     }
 }

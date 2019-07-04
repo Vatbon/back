@@ -1,4 +1,4 @@
-package ftc.shift.sample.repositories;
+package ftc.shift.sample.repositories.storages;
 
 public class UserStorage {
 }

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AuthController {
-    //GET /api/auth and i get {"name":"string";} i must give back full body of User
-    private final String AUTH_PATH = "/api/auth";
+
+    private final String AUTH_PATH_V1 = "/api/v1/auth";
 
     private final AuthService authService;
 
@@ -18,9 +18,9 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping(AUTH_PATH)
+    @GetMapping(AUTH_PATH_V1 + "/{name}")
     public ResponseEntity<User> authenticate(
-            @RequestParam("name") String name
+            @PathVariable("name") String name
     ) {
         User result = authService.authUser(new User("", name));
         return ResponseEntity.ok(result);

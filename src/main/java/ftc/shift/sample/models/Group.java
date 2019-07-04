@@ -1,28 +1,49 @@
 package ftc.shift.sample.models;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class Group {
+    @ApiModelProperty(value = "Уникальный идентификатор события", required = true)
     private String id;
-    private String name;
+
+    @ApiModelProperty(value = "Названия группы", required = true)
+    private String title;
+
+    @ApiModelProperty(value = "Дата и время начала", required = true)
     private String startTime;
-    private String deadLine;
+
+    @ApiModelProperty(value = "Дата и время окончания", required = true)
+    private String endTime;
+
+    @ApiModelProperty(value = "Идентификатор начала события", required = true)
     private boolean started;
+
+    @ApiModelProperty(value = "Идентификатор окончания события", required = true)
     private boolean finished;
+
+    @ApiModelProperty(value = "Ограничение на количество участников", required = true)
     private int amountLimit;
+
+    @ApiModelProperty(value = "Количество участников на данный момент", required = true)
     private int amount;
+
+    @ApiModelProperty(value = "Создатель группы", required = true)
     private User host;
-    private Collection<User> participants = new ArrayList<>();
+
+    @ApiModelProperty(value = "Лист участников", required = true)
+    private Collection<Participant> participants = new ArrayList<>();
 
     public Group() {
     }
 
-    public Group(String id, String name, String startTime, String deadLine, int amountLimit, User host) {
+    public Group(String id, String title, String startTime, String endTime, int amountLimit, User host) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.startTime = startTime;
-        this.deadLine = deadLine;
+        this.endTime = endTime;
         this.amountLimit = amountLimit;
         this.host = host;
     }
@@ -35,12 +56,12 @@ public class Group {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getStartTime() {
@@ -51,12 +72,12 @@ public class Group {
         this.startTime = startTime;
     }
 
-    public String getDeadLine() {
-        return deadLine;
+    public String getEndTime() {
+        return endTime;
     }
 
-    public void setDeadLine(String deadLine) {
-        this.deadLine = deadLine;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
     public int getAmountLimit() {
@@ -76,12 +97,35 @@ public class Group {
     }
 
     public Collection<User> getAllParticipants() {
-        return this.participants;
+        Collection<User> result = new ArrayList<>();
+        for (Participant participant : participants) {
+            result.add(participant.user);
+        }
+        return result;
     }
 
-    public void addParticipant(User user) {
-        if (!this.participants.contains(user))
-            this.participants.add(user);
+    public void addParticipant(User user, String prefer) {
+        for (Participant participant : participants) {
+            if (participant.user.equals(user))
+                return;
+        }
+        this.participants.add(new Participant(user, prefer, false));
+    }
+
+    public void deleteParticipant(User user) {
+        for (Participant participant : participants) {
+            if (participant.user.equals(user))
+                participants.remove(participant);
+        }
+    }
+
+    public void recieveGift(User user) {
+        for (Participant participant : participants) {
+            if (participant.user.equals(user)) {
+                participant.received = true;
+                return;
+            }
+        }
     }
 
     public boolean isStarted() {
@@ -115,5 +159,17 @@ public class Group {
         if (group1 == null)
             return false;
         return this.id.equals(group1.getId());
+    }
+
+    private class Participant {
+        User user;
+        String prefer;
+        boolean received;
+
+        Participant(User user, String prefer, boolean received) {
+            this.user = user;
+            this.prefer = prefer;
+            this.received = received;
+        }
     }
 }
