@@ -54,7 +54,7 @@ public class GroupsController {
         return ResponseEntity.ok(result);
     }
 
-    @PatchMapping(GROUPS_PATH_V1 + "/{groupId}")
+    @PutMapping(GROUPS_PATH_V1 + "/{groupId}")
     public ResponseEntity<Group> patchGroup(
             @RequestHeader("userId") String userId,
             @RequestBody Group group) {
