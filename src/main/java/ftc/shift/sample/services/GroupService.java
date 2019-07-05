@@ -14,11 +14,13 @@ public class GroupService {
 
     private final GroupRepository groupRepository;
     private final UserService userService;
+    private final TimeService timeService;
 
     @Autowired
-    public GroupService(GroupRepository groupRepository, UserService userService) {
+    public GroupService(GroupRepository groupRepository, UserService userService, TimeService timeService) {
         this.groupRepository = groupRepository;
         this.userService = userService;
+        this.timeService = timeService;
     }
 
     public Collection<Group> provideAllGroups(String userId) {
@@ -54,7 +56,8 @@ public class GroupService {
     }
 
     private int checkRules(Group group) {
-        // nowTime < startTime < EndTime
+        if (!timeService.isDatesValid(group))
+            return -1;
         if (group.getStartTime() == null || group.getStartTime().equals(""))
             return -1;
         if (group.getEndTime() == null || group.getEndTime().equals(""))
@@ -68,10 +71,10 @@ public class GroupService {
         return 0;
     }
 
-    public Group updateGroup(String userId, Group group) {
+    public Group updateGroup(String userId, String groupId, Group group) {
         if (!userService.isRegistered(userId))
             return null;
-        return groupRepository.updateGroup(userId, group);
+        return groupRepository.updateGroup(userId, groupId, group);
     }
 
     public int deleteGroup(String userId, String groupId) {
@@ -106,7 +109,7 @@ public class GroupService {
         User user = userService.provideUser(userId);
         group.deleteParticipant(user);
         group.addParticipant(user, prefer);
-        groupRepository.updateGroup(groupId, group);
+        groupRepository.updateGroup(groupId, groupId, group);
         return 0;
     }
 
@@ -115,5 +118,9 @@ public class GroupService {
             return -1;
         groupRepository.fetchGroup(groupId).deleteParticipant(userService.provideUser(userId));
         return 0;
+    }
+
+    Collection<Group> _provideAllGroups() {
+        return groupRepository.getAllGroups();
     }
 }

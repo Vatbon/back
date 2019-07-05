@@ -77,7 +77,7 @@ public class GroupsController {
             @RequestHeader("userId") String userId,
             @PathVariable("groupId") String groupId,
             @RequestBody Group group) {
-        Group result = service.updateGroup(userId, group);
+        Group result = service.updateGroup(userId, groupId, group);
         Logger.log("PUT " + GROUPS_PATH_V1 + " userId = " + userId + " groupId = " + groupId);
         if (result == null)
             return ResponseEntity.badRequest().build();
