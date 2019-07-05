@@ -1,9 +1,11 @@
 package ftc.shift.sample.models;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
+@ApiModel
 public class Book {
   @ApiModelProperty(value = "Уникальный идентификатор книги", required = true)
   private String id;

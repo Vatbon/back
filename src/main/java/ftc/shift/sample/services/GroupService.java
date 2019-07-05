@@ -6,6 +6,7 @@ import ftc.shift.sample.repositories.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Service
@@ -23,7 +24,11 @@ public class GroupService {
     public Collection<Group> provideAllGroups(String userId) {
         if (!userService.isRegistered(userId))
             return null;
-        Collection<Group> result = groupRepository.getAllGroups();
+        Collection<Group> groups = groupRepository.getAllGroups();
+        Collection<Group> result = new ArrayList<>();
+        for (Group group : groups) {
+            result.add(group.clone());
+        }
         for (Group group : result) {
             group.getAllParticipants().clear();
         }
@@ -40,7 +45,8 @@ public class GroupService {
         if (!userService.isRegistered(userId)) {
             return null;
         }
-        int corr = checkRules(group);
+        if (checkRules(group) == -1)
+            return null;
         Group result = groupRepository.createGroup(userId, group);
         result.addParticipant(userService.provideUser(userId), "");
         return result;
@@ -49,6 +55,12 @@ public class GroupService {
 
     private int checkRules(Group group) {
         // nowTime < startTime < EndTime
+        if (group.getStartTime() == null || group.getStartTime().equals(""))
+            return -1;
+        if (group.getEndTime() == null || group.getEndTime().equals(""))
+            return -1;
+        if (group.getTitle() == null)
+            return -1;
         if (group.getAmountLimit() < 3)
             return -1;
         if (group.getMinValue() > group.getMaxValue())
@@ -78,7 +90,12 @@ public class GroupService {
     public int joinGroup(String groupId, String userId, String prefer) {
         if (!userService.isRegistered(userId))
             return -1;
-        groupRepository.fetchGroup(groupId).addParticipant(userService.provideUser(userId), prefer);
+        Group group = groupRepository.fetchGroup(groupId);
+        if (group.getAmount() + 1 > group.getAmountLimit())
+            return -1;
+        if (group.getAllParticipants().contains(userService.provideUser(userId)))
+            return -1;
+        group.addParticipant(userService.provideUser(userId), prefer);
         return 0;
     }
 

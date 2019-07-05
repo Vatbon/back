@@ -8,14 +8,22 @@ import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+ * В репозитории уже существуют 7 пользователей: "Анастасия","Владимир","Владислав","Данила","Ксения","Максим","Никита"
+ */
 @Repository
 public class InMemoryUserRepository implements UserRepository {
 
     private static final Map<String, User> userCache = new HashMap<>();
 
     public InMemoryUserRepository() {
-        this.createUser(new User("", "Vasya"));
-        this.createUser(new User("", "Anton"));
+        this.createUser(new User("", "Анастасия"));
+        this.createUser(new User("", "Владимир"));
+        this.createUser(new User("", "Владислав"));
+        this.createUser(new User("", "Данила"));
+        this.createUser(new User("", "Ксения"));
+        this.createUser(new User("", "Максим"));
+        this.createUser(new User("", "Никита"));
     }
 
     @Override
@@ -48,8 +56,7 @@ public class InMemoryUserRepository implements UserRepository {
         return false;
     }
 
-    @Override
-    public User getUserbyName(String name) {
+    public User getUserByName(String name) {
         if (name == null)
             return null;
         for (User user : userCache.values()) {

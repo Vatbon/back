@@ -23,12 +23,12 @@ public class UserService {
         return userRepository.createUser(user);
     }
 
-    public boolean isRegistered(User user){
+    public boolean isRegistered(User user) {
         return userRepository.containsName(user.getName());
     }
 
     public User provideUserByName(String name) {
-        return userRepository.getUserbyName(name);
+        return userRepository.getUserByName(name);
     }
 
     public boolean isRegistered(String userId) {

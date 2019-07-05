@@ -1,9 +1,11 @@
 package ftc.shift.sample.models;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel
 public class User {
-    @ApiModelProperty(value = "Уникальный идентификатор пользователя", required = true)
+    @ApiModelProperty(value = "Уникальный идентификатор пользователя", required = false)
     private String id;
     @ApiModelProperty(value = "Имя пользователя", required = true)
     private String name;

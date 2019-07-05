@@ -1,12 +1,14 @@
 package ftc.shift.sample.models;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Group {
-    @ApiModelProperty(value = "Уникальный идентификатор события", required = true)
+@ApiModel
+public class Group implements Cloneable {
+    @ApiModelProperty(value = "Уникальный идентификатор события", required = false)
     private String id;
 
     @ApiModelProperty(value = "Названия группы", required = true)
@@ -18,16 +20,16 @@ public class Group {
     @ApiModelProperty(value = "Дата и время окончания", required = true)
     private String endTime;
 
-    @ApiModelProperty(value = "Идентификатор начала события", required = true)
+    @ApiModelProperty(value = "Идентификатор начала события", required = false)
     private boolean started;
 
-    @ApiModelProperty(value = "Идентификатор окончания события", required = true)
+    @ApiModelProperty(value = "Идентификатор окончания события", required = false)
     private boolean finished;
 
     @ApiModelProperty(value = "Ограничение на количество участников", required = true)
     private int amountLimit;
 
-    @ApiModelProperty(value = "Количество участников на данный момент", required = true)
+    @ApiModelProperty(value = "Количество участников на данный момент", required = false)
     private int amount;
 
     @ApiModelProperty(value = "Минимальная сумма подарка", required = true)
@@ -36,16 +38,19 @@ public class Group {
     @ApiModelProperty(value = "Максимальная сумма подарка", required = true)
     private int maxValue;
 
-    @ApiModelProperty(value = "Создатель группы", required = true)
+    @ApiModelProperty(value = "Способ дарения подарка", required = true)
+    private String method;
+
+    @ApiModelProperty(value = "Создатель группы", required = false)
     private User host;
 
-    @ApiModelProperty(value = "Лист участников", required = true)
+    @ApiModelProperty(value = "Лист участников", required = false)
     private Collection<Participant> participants = new ArrayList<>();
 
     public Group() {
     }
 
-    public Group(String id, String title, String startTime, String endTime, int amountLimit, int minValue, int maxValue, User host) {
+    public Group(String id, String title, String startTime, String endTime, int amountLimit, int minValue, int maxValue, String method, User host) {
         this.id = id;
         this.title = title;
         this.startTime = startTime;
@@ -53,6 +58,7 @@ public class Group {
         this.amountLimit = amountLimit;
         this.minValue = minValue;
         this.maxValue = maxValue;
+        this.method = method;
         this.host = host;
     }
 
@@ -185,6 +191,14 @@ public class Group {
         this.maxValue = maxValue;
     }
 
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
     private class Participant {
         User user;
         String prefer;
@@ -195,5 +209,12 @@ public class Group {
             this.prefer = prefer;
             this.received = received;
         }
+    }
+
+    @Override
+    public Group clone() {
+        Group clone = new Group(this.id, this.title, this.startTime, this.endTime, this.amountLimit, this.minValue, this.maxValue, this.method, this.host);
+        //implement cloning participants
+        return clone;
     }
 }
