@@ -21,6 +21,8 @@ public class GroupService {
     }
 
     public Collection<Group> provideAllGroups(String userId) {
+        if (!userService.isRegistered(userId))
+            return null;
         Collection<Group> result = groupRepository.getAllGroups();
         for (Group group : result) {
             group.getAllParticipants().clear();
@@ -29,40 +31,72 @@ public class GroupService {
     }
 
     public Group provideGroup(String userId, String groupId) {
+        if (!userService.isRegistered(userId))
+            return null;
         return groupRepository.fetchGroup(groupId);
     }
 
     public Group createGroup(String userId, Group group) {
+        if (!userService.isRegistered(userId)) {
+            return null;
+        }
+        int corr = checkRules(group);
         Group result = groupRepository.createGroup(userId, group);
         result.addParticipant(userService.provideUser(userId), "");
         return result;
+
+    }
+
+    private int checkRules(Group group) {
+        // nowTime < startTime < EndTime
+        if (group.getAmountLimit() < 3)
+            return -1;
+        if (group.getMinValue() > group.getMaxValue())
+            return -1;
+        return 0;
     }
 
     public Group updateGroup(String userId, Group group) {
+        if (!userService.isRegistered(userId))
+            return null;
         return groupRepository.updateGroup(userId, group);
     }
 
-    public void deleteGroup(String userId, String groupId) {
+    public int deleteGroup(String userId, String groupId) {
+        if (!userService.isRegistered(userId))
+            return -1;
         groupRepository.deleteGroup(groupId);
+        return 0;
     }
 
     public Collection<Group> provideUsersGroups(String userId) {
+        if (!userService.isRegistered(userId))
+            return null;
         return groupRepository.getUsersGroups(userId);
     }
 
-    public void joinGroup(String groupId, String userId, String prefer) {
+    public int joinGroup(String groupId, String userId, String prefer) {
+        if (!userService.isRegistered(userId))
+            return -1;
         groupRepository.fetchGroup(groupId).addParticipant(userService.provideUser(userId), prefer);
+        return 0;
     }
 
-    public void changePrefer(String groupId, String userId, String prefer) {
+    public int changePrefer(String groupId, String userId, String prefer) {
+        if (!userService.isRegistered(userId))
+            return -1;
         Group group = groupRepository.fetchGroup(groupId);
         User user = userService.provideUser(userId);
         group.deleteParticipant(user);
         group.addParticipant(user, prefer);
         groupRepository.updateGroup(groupId, group);
+        return 0;
     }
 
-    public void receiveGift(String groupId, String userId) {
+    public int receiveGift(String groupId, String userId) {
+        if (!userService.isRegistered(userId))
+            return -1;
         groupRepository.fetchGroup(groupId).deleteParticipant(userService.provideUser(userId));
+        return 0;
     }
 }

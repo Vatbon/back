@@ -30,6 +30,12 @@ public class Group {
     @ApiModelProperty(value = "Количество участников на данный момент", required = true)
     private int amount;
 
+    @ApiModelProperty(value = "Минимальная сумма подарка", required = true)
+    private int minValue;
+
+    @ApiModelProperty(value = "Максимальная сумма подарка", required = true)
+    private int maxValue;
+
     @ApiModelProperty(value = "Создатель группы", required = true)
     private User host;
 
@@ -39,12 +45,14 @@ public class Group {
     public Group() {
     }
 
-    public Group(String id, String title, String startTime, String endTime, int amountLimit, User host) {
+    public Group(String id, String title, String startTime, String endTime, int amountLimit, int minValue, int maxValue, User host) {
         this.id = id;
         this.title = title;
         this.startTime = startTime;
         this.endTime = endTime;
         this.amountLimit = amountLimit;
+        this.minValue = minValue;
+        this.maxValue = maxValue;
         this.host = host;
     }
 
@@ -159,6 +167,22 @@ public class Group {
         if (group1 == null)
             return false;
         return this.id.equals(group1.getId());
+    }
+
+    public int getMinValue() {
+        return minValue;
+    }
+
+    public void setMinValue(int minValue) {
+        this.minValue = minValue;
+    }
+
+    public int getMaxValue() {
+        return maxValue;
+    }
+
+    public void setMaxValue(int maxValue) {
+        this.maxValue = maxValue;
     }
 
     private class Participant {

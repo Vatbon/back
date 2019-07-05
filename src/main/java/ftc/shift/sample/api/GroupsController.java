@@ -4,6 +4,7 @@ import ftc.shift.sample.models.Group;
 import ftc.shift.sample.models.User;
 import ftc.shift.sample.services.GroupService;
 import ftc.shift.sample.util.Logger;
+import io.swagger.annotations.ApiModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +23,12 @@ public class GroupsController {
     @GetMapping(GROUPS_PATH_V1)
     public ResponseEntity<Collection<Group>> listGroups(
             @RequestHeader("userId") String userId) {
-        Collection<Group> groups = service.provideAllGroups(userId);
+        Collection<Group> result = service.provideAllGroups(userId);
         Logger.log("GET " + GROUPS_PATH_V1 + " userId = " + userId);
-        return ResponseEntity.ok(groups);
+        if (result == null)
+            return ResponseEntity.badRequest().build();
+
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping(GROUPS_PATH_V1 + "/{groupId}")
@@ -33,6 +37,9 @@ public class GroupsController {
             @PathVariable String groupId) {
         Group result = service.provideGroup(userId, groupId);
         Logger.log("GET " + GROUPS_PATH_V1 + "/" + groupId + " userId = " + userId);
+        if (result == null)
+            return ResponseEntity.badRequest().build();
+
         return ResponseEntity.ok(result);
     }
 
@@ -40,8 +47,10 @@ public class GroupsController {
     public ResponseEntity<?> deleteGroup(
             @RequestHeader("userId") String userId,
             @PathVariable String groupId) {
-        service.deleteGroup(userId, groupId);
+        int result = service.deleteGroup(userId, groupId);
         Logger.log("DELETE " + GROUPS_PATH_V1 + "/" + groupId + " userId = " + userId);
+        if (result == -1)
+            return ResponseEntity.badRequest().build();
         return ResponseEntity.ok().build();
     }
 
@@ -51,6 +60,9 @@ public class GroupsController {
             @RequestBody Group group) {
         Group result = service.createGroup(userId, group);
         Logger.log("POST " + GROUPS_PATH_V1 + " userId = " + userId + " groupName = " + group.getTitle());
+        if (result == null)
+            return ResponseEntity.badRequest().build();
+
         return ResponseEntity.ok(result);
     }
 
@@ -59,6 +71,8 @@ public class GroupsController {
             @RequestHeader("userId") String userId,
             @RequestBody Group group) {
         Group result = service.updateGroup(userId, group);
+        if (result == null)
+            return ResponseEntity.badRequest().build();
         return ResponseEntity.ok(result);
     }
 
@@ -67,7 +81,9 @@ public class GroupsController {
             @RequestHeader("userId") String userId,
             @PathVariable("groupId") String groupId,
             @RequestBody Prefer prefer) {
-        service.joinGroup(groupId, userId, prefer.prefer);
+        int result = service.joinGroup(groupId, userId, prefer.prefer);
+        if (result == -1)
+            return ResponseEntity.badRequest().build();
         return ResponseEntity.ok().build();
     }
 
@@ -77,7 +93,9 @@ public class GroupsController {
             @RequestHeader("userId") String userId,
             @RequestBody Prefer prefer
     ) {
-        service.changePrefer(groupId, userId, prefer.prefer);
+        int result = service.changePrefer(groupId, userId, prefer.prefer);
+        if (result == -1)
+            return ResponseEntity.badRequest().build();
         return ResponseEntity.ok().build();
     }
 
@@ -85,7 +103,9 @@ public class GroupsController {
     public ResponseEntity<?> receiveGift(
             @PathVariable("groupId") String groupId,
             @RequestHeader("userId") String userId) {
-        service.receiveGift(groupId, userId);
+        int result = service.receiveGift(groupId, userId);
+        if (result == -1)
+            return ResponseEntity.badRequest().build();
         return ResponseEntity.ok().build();
     }
 
@@ -94,16 +114,44 @@ public class GroupsController {
             @PathVariable("groupId") String groupId,
             @RequestHeader("userId") String userId) {
         //service.getGiftInfo(groupId, userId);
+        if (0 == -1)
+            return ResponseEntity.badRequest().build();
         return ResponseEntity.ok().build();
     }
 
+    @ApiModel
     private class Prefer {
         String prefer;
+        String method;
+
+        Prefer() {
+        }
+
+        Prefer(String prefer, String method) {
+            this.prefer = prefer;
+            this.method = method;
+        }
     }
 
+    @ApiModel
     private class ResponsePreferEntity {
         User user;
         String prefer;
+        String method;
         boolean received;
+        int minValue;
+        int maxValue;
+
+        ResponsePreferEntity() {
+        }
+
+        ResponsePreferEntity(User user, String prefer, String method, boolean received, int minValue, int maxValue) {
+            this.user = user;
+            this.prefer = prefer;
+            this.method = method;
+            this.received = received;
+            this.minValue = minValue;
+            this.maxValue = maxValue;
+        }
     }
 }

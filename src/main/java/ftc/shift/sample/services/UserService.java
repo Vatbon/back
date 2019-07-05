@@ -30,4 +30,8 @@ public class UserService {
     public User provideUserByName(String name) {
         return userRepository.getUserbyName(name);
     }
+
+    public boolean isRegistered(String userId) {
+        return userRepository.containsName(provideUser(userId).getName());
+    }
 }
