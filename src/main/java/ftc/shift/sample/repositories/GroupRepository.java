@@ -17,4 +17,10 @@ public interface GroupRepository {
     Collection<Group> getAllGroups();
 
     Collection<Group> getUsersGroups(String userId);
+
+    @Deprecated
+    void _startGroup(String groupId);
+
+    @Deprecated
+    void _finishGroup(String groupId);
 }

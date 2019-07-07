@@ -133,7 +133,7 @@ public class Group implements Cloneable {
         }
     }
 
-    public void recieveGift(User user) {
+    public void receiveGift(User user) {
         for (Participant participant : participants) {
             if (participant.user.equals(user)) {
                 participant.received = true;
@@ -214,7 +214,7 @@ public class Group implements Cloneable {
     @Override
     public Group clone() {
         Group clone = new Group(this.id, this.title, this.startTime, this.endTime, this.amountLimit, this.minValue, this.maxValue, this.method, this.host);
-        //implement cloning participants
+        //implement cloning participants?
         return clone;
     }
 }

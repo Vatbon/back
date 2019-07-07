@@ -16,7 +16,7 @@ public class TimeService {
 
     private final GroupRepository groupRepository;
     private final GameService gameService;
-    private static int checkInterval = 3600000 * 12;//12 Hours
+    private static int checkInterval = 60000;//1 min
     private static String dateFormat = "dd/MM/yyyy";
 
     @Autowired
@@ -46,12 +46,17 @@ public class TimeService {
                 e.printStackTrace();
             }
 
-            if (!startTimeDate.before(now)) {
-                group.setStarted(true);
-                gameService.arrangeGame(group);
+            if (!group.isStarted()) {
+                if (startTimeDate != null && !startTimeDate.before(now)) {
+                    group.setStarted(true);
+                    gameService.arrangeGame(group);
+                }
             }
-            if (!endTimeDate.after(now))
-                group.setFinished(true);
+
+            if (!group.isFinished()) {
+                if (endTimeDate != null && !endTimeDate.after(now))
+                    group.setFinished(true);
+            }
 
         }
     }
@@ -59,15 +64,22 @@ public class TimeService {
     boolean isDatesValid(Group group) {
         Date startTimeDate = null;
         Date endTimeDate = null;
+        if (group.getStartTime() == null || group.getStartTime().equals(""))
+            return false;
+        if (group.getEndTime() == null || group.getEndTime().equals(""))
+            return false;
         try {
+
             startTimeDate = new SimpleDateFormat(dateFormat).parse(group.getStartTime());
             endTimeDate = new SimpleDateFormat(dateFormat).parse(group.getEndTime());
             Date now = new Date();
+
             if (!startTimeDate.after(now))
                 return false;
             if (!startTimeDate.before(endTimeDate))
                 return false;
             return true;
+
         } catch (ParseException e) {
             return false;
         }

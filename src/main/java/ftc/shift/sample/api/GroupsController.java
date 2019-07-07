@@ -9,14 +9,16 @@ import ftc.shift.sample.util.Logger;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-//feign
-
+/**
+ * Все аннотации, начинающиеся с @Api нужны только для построения <a href="http://localhost:8081/swagger-ui.html#/">swagger-документации</a>
+ */
 @RestController
 public class GroupsController {
 
@@ -27,6 +29,7 @@ public class GroupsController {
 
 
     @GetMapping(GROUPS_PATH_V1)
+    @ApiOperation(value = "Показать все группы (Коллекция allParticipants пустая)")
     public ResponseEntity<Collection<Group>> listGroups(
             @RequestHeader("userId") String userId) {
         Collection<Group> result = service.provideAllGroups(userId);
@@ -38,6 +41,7 @@ public class GroupsController {
     }
 
     @GetMapping(GROUPS_PATH_V1 + "/{groupId}")
+    @ApiOperation(value = "Получить полное тело группы по groupId")
     public ResponseEntity<Group> getGroup(
             @RequestHeader("userId") String userId,
             @PathVariable String groupId) {
@@ -50,6 +54,7 @@ public class GroupsController {
     }
 
     @DeleteMapping(GROUPS_PATH_V1 + "/{groupId}")
+    @ApiOperation(value = "Удаление существующей группы")
     public ResponseEntity<?> deleteGroup(
             @RequestHeader("userId") String userId,
             @PathVariable String groupId) {
@@ -61,6 +66,7 @@ public class GroupsController {
     }
 
     @PostMapping(GROUPS_PATH_V1)
+    @ApiOperation(value = "Создание новой группы")
     public ResponseEntity<Group> createGroup(
             @RequestHeader("userId") String userId,
             @RequestBody Group group) {
@@ -73,6 +79,7 @@ public class GroupsController {
     }
 
     @PutMapping(GROUPS_PATH_V1 + "/{groupId}")
+    @ApiOperation(value = "Изменение существующей группы")
     public ResponseEntity<Group> patchGroup(
             @RequestHeader("userId") String userId,
             @PathVariable("groupId") String groupId,
@@ -85,6 +92,7 @@ public class GroupsController {
     }
 
     @PostMapping(GROUPS_PATH_V1 + "/{groupId}/join")
+    @ApiOperation(value = "Присоединение к существующей группе как участник")
     public ResponseEntity<?> joinGroup(
             @RequestHeader("userId") String userId,
             @PathVariable("groupId") String groupId,
@@ -96,7 +104,20 @@ public class GroupsController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping(GROUPS_PATH_V1 + "/{groupId}/leave")
+    @ApiOperation(value = "Покинуть существующую группу")
+    public ResponseEntity<?> leaveGroup(
+            @RequestHeader("userId") String userId,
+            @PathVariable("groupId") String groupId
+    ) {
+        int result = service.leaveGroup(groupId, userId);
+        if (result == -1)
+            return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok().build();
+    }
+
     @PutMapping(GROUPS_PATH_V1 + "/{groupId}/prefer")
+    @ApiOperation(value = "Изменение желания в группе, в которй пользователь участник")
     public ResponseEntity<?> changePrefer(
             @PathVariable("groupId") String groupId,
             @RequestHeader("userId") String userId,
@@ -110,6 +131,7 @@ public class GroupsController {
     }
 
     @PutMapping(GROUPS_PATH_V1 + "/{groupId}/gift/receive")
+    @ApiOperation(value = "Подтверждение принятия подарка учатсником группы")
     public ResponseEntity<?> receiveGift(
             @PathVariable("groupId") String groupId,
             @RequestHeader("userId") String userId) {
@@ -120,11 +142,36 @@ public class GroupsController {
     }
 
     @GetMapping(GROUPS_PATH_V1 + "/{groupId}/gift")
+    @ApiOperation(value = "Получение информации о подарке")
     public ResponseEntity<ResponsePreferEntity> sendGiftInfo(
             @PathVariable("groupId") String groupId,
             @RequestHeader("userId") String userId) {
         //service.getGiftInfo(groupId, userId);
         if (0 == -1)
+            return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok().build();
+    }
+
+    @Deprecated
+    @PutMapping(GROUPS_PATH_V1 + "/{groupId}/start")
+    @ApiOperation(value = "Принудительное начало события !Использовать только для тестирования!")
+    public ResponseEntity<?> startGroup(
+            @PathVariable("groupId") String groupId
+    ) {
+        int result = service._startGroup(groupId);
+        if (result == -1)
+            return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok().build();
+    }
+
+    @Deprecated
+    @PutMapping(GROUPS_PATH_V1 + "/{groupId}/finish")
+    @ApiOperation(value = "Принудительное завершение события !Использовать только для тестирования!")
+    public ResponseEntity<?> finishGroup(
+            @PathVariable("groupId") String groupId
+    ) {
+        int result = service._finishGroup(groupId);
+        if (result == -1)
             return ResponseEntity.badRequest().build();
         return ResponseEntity.ok().build();
     }

@@ -1,5 +1,6 @@
 package ftc.shift.sample.services;
 
+import ftc.shift.sample.exception.NotFoundException;
 import ftc.shift.sample.models.Group;
 import ftc.shift.sample.models.User;
 import ftc.shift.sample.repositories.GroupRepository;
@@ -58,10 +59,6 @@ public class GroupService {
     private int checkRules(Group group) {
         if (!timeService.isDatesValid(group))
             return -1;
-        if (group.getStartTime() == null || group.getStartTime().equals(""))
-            return -1;
-        if (group.getEndTime() == null || group.getEndTime().equals(""))
-            return -1;
         if (group.getTitle() == null)
             return -1;
         if (group.getAmountLimit() < 3)
@@ -107,6 +104,8 @@ public class GroupService {
             return -1;
         Group group = groupRepository.fetchGroup(groupId);
         User user = userService.provideUser(userId);
+        if (!group.getAllParticipants().contains(user))
+            return -1;
         group.deleteParticipant(user);
         group.addParticipant(user, prefer);
         groupRepository.updateGroup(groupId, groupId, group);
@@ -116,11 +115,50 @@ public class GroupService {
     public int receiveGift(String groupId, String userId) {
         if (!userService.isRegistered(userId))
             return -1;
-        groupRepository.fetchGroup(groupId).deleteParticipant(userService.provideUser(userId));
+        Group group = groupRepository.fetchGroup(groupId);
+        User user = userService.provideUser(userId);
+        if (!group.getAllParticipants().contains(user))
+            return -1;
+        group.receiveGift(user);
         return 0;
     }
 
     Collection<Group> _provideAllGroups() {
         return groupRepository.getAllGroups();
+    }
+
+    public int leaveGroup(String groupId, String userId) {
+        if (!userService.isRegistered(userId))
+            return -1;
+        Group group = groupRepository.fetchGroup(groupId);
+        User user = userService.provideUser(userId);
+        if (group.isStarted())
+            return -1;
+        if (!group.getAllParticipants().contains(user))
+            return -1;
+        group.deleteParticipant(user);
+        return 0;
+    }
+
+    @Deprecated
+    public int _startGroup(String groupId) {
+        try {
+            groupRepository.fetchGroup(groupId);
+        } catch (NotFoundException e) {
+            return -1;
+        }
+        groupRepository._startGroup(groupId);
+        return 0;
+    }
+
+    @Deprecated
+    public int _finishGroup(String groupId) {
+        try {
+            groupRepository.fetchGroup(groupId);
+        } catch (NotFoundException e) {
+            return -1;
+        }
+        groupRepository._finishGroup(groupId);
+        return 0;
     }
 }

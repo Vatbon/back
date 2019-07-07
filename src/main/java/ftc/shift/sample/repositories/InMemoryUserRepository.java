@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.Map;
 
-/*
+/**
  * В репозитории уже существуют 7 пользователей: "Анастасия","Владимир","Владислав","Данила","Ксения","Максим","Никита"
  */
 @Repository

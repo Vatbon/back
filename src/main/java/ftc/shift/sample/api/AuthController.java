@@ -2,6 +2,7 @@ package ftc.shift.sample.api;
 
 import ftc.shift.sample.models.User;
 import ftc.shift.sample.services.AuthService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ public class AuthController {
     }
 
     @GetMapping(AUTH_PATH_V1 + "/{name}")
+    @ApiOperation(value = "Авторизация в системе под уникальным именем")
     public ResponseEntity<User> authenticate(
             @PathVariable("name") String name
     ) {

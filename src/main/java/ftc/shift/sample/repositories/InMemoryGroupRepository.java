@@ -81,6 +81,16 @@ public class InMemoryGroupRepository implements GroupRepository {
         return result;
     }
 
+    @Override
+    public void _startGroup(String groupId) {
+        groupCache.get(groupId).setStarted(true);
+    }
+
+    @Override
+    public void _finishGroup(String groupId) {
+        groupCache.get(groupId).setFinished(true);
+    }
+
     public void saveState() {
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GameService {
-    void arrangeGame(Group group) {
+    public void arrangeGame(Group group) {
+
     }
 }
