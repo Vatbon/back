@@ -33,25 +33,28 @@ public class GameService {
         }
         group = groupRepository.fetchGroup(group.getId());
         ArrayList<User> collection1 = (ArrayList<User>) group.getAllParticipants();
-        ArrayList<Integer> collection2 = new ArrayList<>();
-        for (int i = 0; i < collection1.size(); i++)
-            collection2.add(i);
-
-        boolean marker = false;
-        do {
-            Collections.shuffle(collection2);
-            marker = false;
-            for (Integer integer : collection2) {
-                if (integer.equals(collection2.get(integer)))
-                    marker = true;
-            }
-        } while (marker);
         GameInfo gameInfo = new GameInfo();
-        gameInfo.setGroup(group);
-        int i = 0;
-        for (User user : collection1) {
-            gameInfo.getLinks().put(user, collection1.get(collection2.get(i)));
-            i++;
+        synchronized (collection1) {
+            ArrayList<Integer> collection2 = new ArrayList<>();
+            for (int i = 0; i < collection1.size(); i++)
+                collection2.add(i);
+
+            boolean marker = false;
+            do {
+                Collections.shuffle(collection2);
+                marker = false;
+                for (Integer integer : collection2) {
+                    if (integer.equals(collection2.get(integer))) {
+                        marker = true;
+                    }
+                }
+            } while (marker);
+            gameInfo.setGroup(group);
+            int i = 0;
+            for (User user : collection1) {
+                gameInfo.getLinks().put(user, collection1.get(collection2.get(i)));
+                i++;
+            }
         }
         gameRepository.createGame(gameInfo);
     }

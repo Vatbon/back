@@ -77,11 +77,12 @@ public class InMemoryGroupRepository implements GroupRepository {
         Collection<Group> result = new ArrayList<>();
         User user = userService.provideUser(userId);
 
-        for (Group group : groups) {
-            if (group.getAllParticipants().contains(user) || group.getHost().equals(user))
-                result.add(group);
+        synchronized (groups) {
+            for (Group group : groups) {
+                if (group.getAllParticipants().contains(user) || group.getHost().equals(user))
+                    result.add(group);
+            }
         }
-
         return result;
     }
 

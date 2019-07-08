@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 @ApiModel
 public class Group implements Cloneable {
@@ -117,35 +118,47 @@ public class Group implements Cloneable {
 
     public Collection<User> getAllParticipants() {
         Collection<User> result = new ArrayList<>();
-        for (Participant participant : participants) {
-            result.add(participant.user);
+        synchronized (participants) {
+            for (Participant participant : participants) {
+                result.add(participant.user);
+            }
         }
         return result;
     }
 
     public void addParticipant(User user, String prefer) {
-        for (Participant participant : participants) {
-            if (participant.user.equals(user))
-                return;
+        synchronized (participants) {
+            for (Participant participant : participants) {
+                if (participant.user.equals(user))
+                    return;
+            }
+            this.participants.add(new Participant(user, prefer, false, false));
         }
-        this.participants.add(new Participant(user, prefer, false, false));
         amount++;
     }
 
     public void deleteParticipant(User user) {
-        for (Participant participant : participants) {
-            if (participant.user.equals(user)) {
-                participants.remove(participant);
-                amount--;
+        synchronized (participants) {
+            Iterator<Participant> iterator = participants.iterator();
+            while (iterator.hasNext()) {
+                Participant participant = iterator.next();
+                if (participant.user.equals(user)) {
+                    iterator.remove();
+                    amount--;
+                }
             }
         }
     }
 
     public void receiveGift(User user) {
-        for (Participant participant : participants) {
-            if (participant.user.equals(user)) {
-                participant.received = true;
-                return;
+        synchronized (participants) {
+            Iterator<Participant> iterator = participants.iterator();
+            while (iterator.hasNext()) {
+                Participant participant = iterator.next();
+                if (participant.user.equals(user)) {
+                    participant.received = true;
+                    return;
+                }
             }
         }
     }
@@ -207,26 +220,38 @@ public class Group implements Cloneable {
     }
 
     public String getPrefer(String userId) {
-        for (Participant participant : participants) {
-            if (participant.user.getId().equals(userId))
-                return participant.prefer;
+        synchronized (participants) {
+            Iterator<Participant> iterator = participants.iterator();
+            while (iterator.hasNext()) {
+                Participant participant = iterator.next();
+                if (participant.user.getId().equals(userId))
+                    return participant.prefer;
+            }
         }
         return null;
     }
 
     public boolean isReceived(String userId) {
-        for (Participant participant : participants) {
-            if (participant.user.getId().equals(userId))
-                return participant.received;
+        synchronized (participants) {
+            Iterator<Participant> iterator = participants.iterator();
+            while (iterator.hasNext()) {
+                Participant participant = iterator.next();
+                if (participant.user.getId().equals(userId))
+                    return participant.received;
+            }
         }
         return false;
     }
 
     public void presentGift(User user) {
-        for (Participant participant : participants) {
-            if (participant.user.equals(user)) {
-                participant.presented = true;
-                return;
+        synchronized (participants) {
+            Iterator<Participant> iterator = participants.iterator();
+            while (iterator.hasNext()) {
+                Participant participant = iterator.next();
+                if (participant.user.equals(user)) {
+                    participant.presented = true;
+                    return;
+                }
             }
         }
     }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -35,31 +36,33 @@ public class TimeService {
 
     private void checkTime() {
         Date now = new Date();
-        for (Group group : groupRepository.getAllGroups()) {
+        Collection<Group> groups = groupRepository.getAllGroups();
+        synchronized (groups) {
+            for (Group group : groups) {
+                Date startTimeDate = null;
+                Date endTimeDate = null;
 
-            Date startTimeDate = null;
-            Date endTimeDate = null;
-
-            try {
-                startTimeDate = new SimpleDateFormat(dateFormat).parse(group.getStartTime());
-                endTimeDate = new SimpleDateFormat(dateFormat).parse(group.getEndTime());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            if (!group.isStarted()) {
-                if (startTimeDate != null && startTimeDate.before(now)) {
-                    Logger.log("groupid = " + group.getId() + " started");
-                    gameService.arrangeGame(group);
-                    group.setStarted(true);
+                try {
+                    startTimeDate = new SimpleDateFormat(dateFormat).parse(group.getStartTime());
+                    endTimeDate = new SimpleDateFormat(dateFormat).parse(group.getEndTime());
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
-            }
 
-            if (!group.isFinished()) {
-                if (endTimeDate != null && endTimeDate.before(now))
-                    group.setFinished(true);
-            }
+                if (!group.isStarted()) {
+                    if (startTimeDate != null && startTimeDate.before(now)) {
+                        Logger.log("groupid = " + group.getId() + " started");
+                        gameService.arrangeGame(group);
+                        group.setStarted(true);
+                    }
+                }
 
+                if (!group.isFinished()) {
+                    if (endTimeDate != null && endTimeDate.before(now))
+                        group.setFinished(true);
+                }
+
+            }
         }
     }
 
