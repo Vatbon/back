@@ -49,6 +49,10 @@ public class InMemoryGroupRepository implements GroupRepository {
     @Override
     public void deleteGroup(String groupId) {
         //TODO: decide what to actually do with deletion of groups
+        if (!groupCache.containsKey(groupId)) {
+            throw new NotFoundException();
+        }
+        groupCache.remove(groupId);
     }
 
     @Override

@@ -80,6 +80,8 @@ public class GroupService {
     public int deleteGroup(String userId, String groupId) {
         if (!userService.isRegistered(userId))
             return -1;
+        if (!userId.equals(groupRepository.fetchGroup(groupId).getHost().getId()))
+            return -1;
         groupRepository.deleteGroup(groupId);
         return 0;
     }
