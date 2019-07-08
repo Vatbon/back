@@ -14,6 +14,9 @@ public class GameInfo {
 
     private Map<User, User> links = new HashMap<>();
 
+    public GameInfo() {
+    }
+
     public Group getGroup() {
         return group;
     }

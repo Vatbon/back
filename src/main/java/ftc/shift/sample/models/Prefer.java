@@ -8,10 +8,10 @@ public class Prefer {
     @ApiModelProperty(value = "Пожелание к подарку", required = true)
     private String prefer;
 
-    Prefer() {
+    public Prefer() {
     }
 
-    Prefer(String prefer) {
+    public Prefer(String prefer) {
         this.prefer = prefer;
     }
 

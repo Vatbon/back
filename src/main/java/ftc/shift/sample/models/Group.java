@@ -1,5 +1,6 @@
 package ftc.shift.sample.models;
 
+import ftc.shift.sample.util.Logger;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -50,16 +51,20 @@ public class Group implements Cloneable {
     public Group() {
     }
 
-    public Group(String id, String title, String startTime, String endTime, int amountLimit, int minValue, int maxValue, String method, User host) {
+    public Group(String id, String title, String startTime, String endTime, int amount, int amountLimit,
+                 int minValue, int maxValue, String method, User host, boolean started, boolean finished) {
         this.id = id;
         this.title = title;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.amount = amount;
         this.amountLimit = amountLimit;
         this.minValue = minValue;
         this.maxValue = maxValue;
         this.method = method;
         this.host = host;
+        this.started = started;
+        this.finished = finished;
     }
 
     public String getId() {
@@ -124,12 +129,15 @@ public class Group implements Cloneable {
                 return;
         }
         this.participants.add(new Participant(user, prefer, false));
+        amount++;
     }
 
     public void deleteParticipant(User user) {
         for (Participant participant : participants) {
-            if (participant.user.equals(user))
+            if (participant.user.equals(user)) {
                 participants.remove(participant);
+                amount--;
+            }
         }
     }
 
@@ -159,7 +167,6 @@ public class Group implements Cloneable {
     }
 
     public int getAmount() {
-        amount = participants.size();
         return amount;
     }
 
@@ -199,6 +206,22 @@ public class Group implements Cloneable {
         this.method = method;
     }
 
+    public String getPrefer(String userId) {
+        for (Participant participant : participants) {
+            if (participant.user.getId().equals(userId))
+                return participant.prefer;
+        }
+        return null;
+    }
+
+    public boolean isReceived(String userId) {
+        for (Participant participant : participants) {
+            if (participant.user.getId().equals(userId))
+                return participant.received;
+        }
+        return false;
+    }
+
     private class Participant {
         User user;
         String prefer;
@@ -213,7 +236,9 @@ public class Group implements Cloneable {
 
     @Override
     public Group clone() {
-        Group clone = new Group(this.id, this.title, this.startTime, this.endTime, this.amountLimit, this.minValue, this.maxValue, this.method, this.host);
+        Logger.log("groupId = " + this.id + " has " + getAmount() + " participants");
+        Group clone = new Group(this.id, this.title, this.startTime, this.endTime, getAmount(), this.amountLimit,
+                this.minValue, this.maxValue, this.method, this.host, this.started, this.finished);
         //implement cloning participants?
         return clone;
     }

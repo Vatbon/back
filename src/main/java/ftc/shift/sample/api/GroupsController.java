@@ -3,12 +3,8 @@ package ftc.shift.sample.api;
 import ftc.shift.sample.models.Group;
 import ftc.shift.sample.models.Prefer;
 import ftc.shift.sample.models.ResponsePreferEntity;
-import ftc.shift.sample.models.User;
 import ftc.shift.sample.services.GroupService;
 import ftc.shift.sample.util.Logger;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -117,7 +113,7 @@ public class GroupsController {
     }
 
     @PutMapping(GROUPS_PATH_V1 + "/{groupId}/prefer")
-    @ApiOperation(value = "Изменение желания в группе, в которй пользователь участник")
+    @ApiOperation(value = "Изменение желания пользователя в группе, в которой он является участником")
     public ResponseEntity<?> changePrefer(
             @PathVariable("groupId") String groupId,
             @RequestHeader("userId") String userId,
@@ -131,7 +127,7 @@ public class GroupsController {
     }
 
     @PutMapping(GROUPS_PATH_V1 + "/{groupId}/gift/receive")
-    @ApiOperation(value = "Подтверждение принятия подарка учатсником группы")
+    @ApiOperation(value = "Подтверждение принятия подарка участником группы")
     public ResponseEntity<?> receiveGift(
             @PathVariable("groupId") String groupId,
             @RequestHeader("userId") String userId) {
@@ -142,14 +138,14 @@ public class GroupsController {
     }
 
     @GetMapping(GROUPS_PATH_V1 + "/{groupId}/gift")
-    @ApiOperation(value = "Получение информации о подарке")
+    @ApiOperation(value = "Получение информации о подарке после начала игры")
     public ResponseEntity<ResponsePreferEntity> sendGiftInfo(
             @PathVariable("groupId") String groupId,
             @RequestHeader("userId") String userId) {
-        //service.getGiftInfo(groupId, userId);
-        if (0 == -1)
+        ResponsePreferEntity result = service.getGiftInfo(groupId, userId);
+        if (result == null)
             return ResponseEntity.badRequest().build();
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(result);
     }
 
     @Deprecated

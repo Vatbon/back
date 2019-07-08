@@ -2,6 +2,7 @@ package ftc.shift.sample.services;
 
 import ftc.shift.sample.models.Group;
 import ftc.shift.sample.repositories.GroupRepository;
+import ftc.shift.sample.util.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,14 +48,15 @@ public class TimeService {
             }
 
             if (!group.isStarted()) {
-                if (startTimeDate != null && !startTimeDate.before(now)) {
-                    group.setStarted(true);
+                if (startTimeDate != null && startTimeDate.before(now)) {
+                    Logger.log("groupid = " + group.getId() + " started");
                     gameService.arrangeGame(group);
+                    group.setStarted(true);
                 }
             }
 
             if (!group.isFinished()) {
-                if (endTimeDate != null && !endTimeDate.after(now))
+                if (endTimeDate != null && endTimeDate.before(now))
                     group.setFinished(true);
             }
 

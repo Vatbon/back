@@ -1,6 +1,5 @@
 package ftc.shift.sample.services;
 
-import ftc.shift.sample.exception.NotFoundException;
 import ftc.shift.sample.models.User;
 import ftc.shift.sample.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

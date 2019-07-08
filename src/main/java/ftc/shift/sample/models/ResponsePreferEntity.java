@@ -12,10 +12,10 @@ public class ResponsePreferEntity {
     @ApiModelProperty(value = "Информация о том, получил ли данный пользователь подарок", required = true)
     private boolean received;
 
-    ResponsePreferEntity() {
+    public ResponsePreferEntity() {
     }
 
-    ResponsePreferEntity(User user, String prefer, boolean received) {
+    public ResponsePreferEntity(User user, String prefer, boolean received) {
         this.user = user;
         this.prefer = prefer;
         this.received = received;

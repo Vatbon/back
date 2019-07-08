@@ -2,6 +2,7 @@ package ftc.shift.sample.services;
 
 import ftc.shift.sample.exception.NotFoundException;
 import ftc.shift.sample.models.Group;
+import ftc.shift.sample.models.ResponsePreferEntity;
 import ftc.shift.sample.models.User;
 import ftc.shift.sample.repositories.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,14 @@ public class GroupService {
     private final GroupRepository groupRepository;
     private final UserService userService;
     private final TimeService timeService;
+    private final GameService gameService;
 
     @Autowired
-    public GroupService(GroupRepository groupRepository, UserService userService, TimeService timeService) {
+    public GroupService(GroupRepository groupRepository, UserService userService, TimeService timeService, GameService gameService) {
         this.groupRepository = groupRepository;
         this.userService = userService;
         this.timeService = timeService;
+        this.gameService = gameService;
     }
 
     public Collection<Group> provideAllGroups(String userId) {
@@ -148,6 +151,7 @@ public class GroupService {
             return -1;
         }
         groupRepository._startGroup(groupId);
+        gameService.arrangeGame(groupRepository.fetchGroup(groupId));
         return 0;
     }
 
@@ -160,5 +164,17 @@ public class GroupService {
         }
         groupRepository._finishGroup(groupId);
         return 0;
+    }
+
+    public ResponsePreferEntity getGiftInfo(String groupId, String userId) {
+        if (!userService.isRegistered(userId))
+            return null;
+        Group group = groupRepository.fetchGroup(groupId);
+        User user = userService.provideUser(userId);
+        if (!group.getAllParticipants().contains(user))
+            return null;
+        if (!group.isStarted() || group.isFinished())
+            return null;
+        return gameService.getGiftInfo(groupId, userId);
     }
 }
