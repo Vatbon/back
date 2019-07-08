@@ -137,6 +137,18 @@ public class GroupsController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping(GROUPS_PATH_V1 + "/{groupId}/gift/presented")
+    @ApiOperation(value = "Подвердить получения подарка")
+    public ResponseEntity<?> presentGift(
+            @PathVariable("groupId") String groupId,
+            @RequestHeader("userId") String userId
+    ) {
+        int result = service.presentGift(groupId, userId);
+        if (result == -1)
+            return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping(GROUPS_PATH_V1 + "/{groupId}/gift")
     @ApiOperation(value = "Получение информации о подарке после начала игры")
     public ResponseEntity<ResponsePreferEntity> sendGiftInfo(

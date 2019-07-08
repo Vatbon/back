@@ -27,6 +27,10 @@ public class GameService {
     }
 
     public void arrangeGame(Group group) {
+        if (group.getAmount() < 3) {
+            group.setFinished(true);
+            return;
+        }
         group = groupRepository.fetchGroup(group.getId());
         ArrayList<User> collection1 = (ArrayList<User>) group.getAllParticipants();
         ArrayList<Integer> collection2 = new ArrayList<>();

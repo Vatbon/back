@@ -128,7 +128,7 @@ public class Group implements Cloneable {
             if (participant.user.equals(user))
                 return;
         }
-        this.participants.add(new Participant(user, prefer, false));
+        this.participants.add(new Participant(user, prefer, false, false));
         amount++;
     }
 
@@ -222,15 +222,26 @@ public class Group implements Cloneable {
         return false;
     }
 
+    public void presentGift(User user) {
+        for (Participant participant : participants) {
+            if (participant.user.equals(user)) {
+                participant.presented = true;
+                return;
+            }
+        }
+    }
+
     private class Participant {
         User user;
         String prefer;
         boolean received;
+        boolean presented;
 
-        Participant(User user, String prefer, boolean received) {
+        Participant(User user, String prefer, boolean received, boolean presented) {
             this.user = user;
             this.prefer = prefer;
             this.received = received;
+            this.presented = presented;
         }
     }
 

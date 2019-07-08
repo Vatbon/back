@@ -177,4 +177,15 @@ public class GroupService {
             return null;
         return gameService.getGiftInfo(groupId, userId);
     }
+
+    public int presentGift(String groupId, String userId) {
+        if (!userService.isRegistered(userId))
+            return -1;
+        Group group = groupRepository.fetchGroup(groupId);
+        User user = userService.provideUser(userId);
+        if (!group.getAllParticipants().contains(user))
+            return -1;
+        group.presentGift(user);
+        return 0;
+    }
 }
