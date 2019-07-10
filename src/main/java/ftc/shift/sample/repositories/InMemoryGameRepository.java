@@ -1,7 +1,6 @@
 package ftc.shift.sample.repositories;
 
 import ftc.shift.sample.models.GameInfo;
-import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;

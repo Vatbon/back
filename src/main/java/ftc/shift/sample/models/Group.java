@@ -13,7 +13,7 @@ public class Group implements Cloneable {
     @ApiModelProperty(value = "Уникальный идентификатор события", required = false)
     private String id;
 
-    @ApiModelProperty(value = "Названия группы до 50 символов", required = true)
+    @ApiModelProperty(value = "Названия группы от 3 до 50 символов", required = true)
     private String title;
 
     @ApiModelProperty(value = "Дата и время начала формата дд.мм.гггг", required = true)
