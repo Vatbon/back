@@ -61,6 +61,7 @@ public class InMemoryGroupRepository implements GroupRepository {
         group.setHost(userService.provideUser(userId));
         group.setStarted(false);
         group.setFinished(false);
+        group.setAmount(0);
         group.getAllParticipants().clear();
         groupCache.put(group.getId(), group);
         return group;

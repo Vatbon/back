@@ -19,7 +19,8 @@ public class TimeService {
     private final GroupRepository groupRepository;
     private final GameService gameService;
     private static int checkInterval = 60000;//1 min
-    private static String dateFormat = "dd/MM/yyyy";
+    long maxDurationInMillis = 8035200000L; //93 days
+    private static String dateFormat = "dd.MM.yyyy";
 
     @Autowired
     public TimeService(GroupRepository groupRepository, GameService gameService) {
@@ -82,6 +83,8 @@ public class TimeService {
             if (!startTimeDate.after(now))
                 return false;
             if (!startTimeDate.before(endTimeDate))
+                return false;
+            if (endTimeDate.getTime() - startTimeDate.getTime() > maxDurationInMillis)
                 return false;
             return true;
 

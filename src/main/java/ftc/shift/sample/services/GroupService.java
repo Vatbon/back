@@ -62,11 +62,22 @@ public class GroupService {
     private int checkRules(Group group) {
         if (!timeService.isDatesValid(group))
             return -1;
+
+        if (group.getTitle().length() < 3 || group.getTitle().length() > 50)
+            return -1;
         if (group.getTitle() == null)
             return -1;
-        if (group.getAmountLimit() < 3)
+
+        if (group.getMethod() == null)
             return -1;
-        if (group.getMinValue() > group.getMaxValue())
+        if (group.getMethod().length() > 200)
+            return -1;
+
+        if (group.getAmountLimit() != 0)
+            if (group.getAmountLimit() < 3)
+                return -1;
+
+        if (group.getMinValue() >= 0 & group.getMinValue() > group.getMaxValue())
             return -1;
         return 0;
     }
@@ -74,6 +85,11 @@ public class GroupService {
     public Group updateGroup(String userId, String groupId, Group group) {
         if (!userService.isRegistered(userId))
             return null;
+        if (group.getTitle().length() < 3 || group.getTitle().length() > 50)
+            return null;
+        if (group.getTitle() == null)
+            return null;
+
         return groupRepository.updateGroup(userId, groupId, group);
     }
 
@@ -96,9 +112,11 @@ public class GroupService {
         if (!userService.isRegistered(userId))
             return -1;
         Group group = groupRepository.fetchGroup(groupId);
-        if (group.getAmount() + 1 > group.getAmountLimit())
+        if (group.getAmount() + 1 > group.getAmountLimit() & group.getAmountLimit() != 0)
             return -1;
         if (group.getAllParticipants().contains(userService.provideUser(userId)))
+            return -1;
+        if (prefer.length() > 200)
             return -1;
         group.addParticipant(userService.provideUser(userId), prefer);
         return 0;
@@ -106,6 +124,8 @@ public class GroupService {
 
     public int changePrefer(String groupId, String userId, String prefer) {
         if (!userService.isRegistered(userId))
+            return -1;
+        if (prefer.length() > 200)
             return -1;
         Group group = groupRepository.fetchGroup(groupId);
         User user = userService.provideUser(userId);
@@ -128,10 +148,6 @@ public class GroupService {
         return 0;
     }
 
-    Collection<Group> _provideAllGroups() {
-        return groupRepository.getAllGroups();
-    }
-
     public int leaveGroup(String groupId, String userId) {
         if (!userService.isRegistered(userId))
             return -1;
@@ -142,29 +158,6 @@ public class GroupService {
         if (!group.getAllParticipants().contains(user))
             return -1;
         group.deleteParticipant(user);
-        return 0;
-    }
-
-    @Deprecated
-    public int _startGroup(String groupId) {
-        try {
-            groupRepository.fetchGroup(groupId);
-        } catch (NotFoundException e) {
-            return -1;
-        }
-        groupRepository._startGroup(groupId);
-        gameService.arrangeGame(groupRepository.fetchGroup(groupId));
-        return 0;
-    }
-
-    @Deprecated
-    public int _finishGroup(String groupId) {
-        try {
-            groupRepository.fetchGroup(groupId);
-        } catch (NotFoundException e) {
-            return -1;
-        }
-        groupRepository._finishGroup(groupId);
         return 0;
     }
 
@@ -188,6 +181,33 @@ public class GroupService {
         if (!group.getAllParticipants().contains(user))
             return -1;
         group.presentGift(user);
+        return 0;
+    }
+
+    Collection<Group> _provideAllGroups() {
+        return groupRepository.getAllGroups();
+    }
+
+    @Deprecated
+    public int _startGroup(String groupId) {
+        try {
+            groupRepository.fetchGroup(groupId);
+        } catch (NotFoundException e) {
+            return -1;
+        }
+        groupRepository._startGroup(groupId);
+        gameService.arrangeGame(groupRepository.fetchGroup(groupId));
+        return 0;
+    }
+
+    @Deprecated
+    public int _finishGroup(String groupId) {
+        try {
+            groupRepository.fetchGroup(groupId);
+        } catch (NotFoundException e) {
+            return -1;
+        }
+        groupRepository._finishGroup(groupId);
         return 0;
     }
 }

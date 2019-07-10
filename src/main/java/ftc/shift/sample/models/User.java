@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class User {
     @ApiModelProperty(value = "Уникальный идентификатор пользователя", required = false)
     private String id;
-    @ApiModelProperty(value = "Имя пользователя", required = true)
+    @ApiModelProperty(value = "Имя пользователя до 30 символов без специальных символов вроде !, \" ,№ ,; ,% ,: ,? ,*", required = true)
     private String name;
 
     public User() {

@@ -29,6 +29,8 @@ public class AuthController {
             @PathVariable("name") String name
     ) {
         User result = authService.authUser(new User("", name));
+        if (result == null)
+            return ResponseEntity.badRequest().build();
         return ResponseEntity.ok(result);
     }
 }

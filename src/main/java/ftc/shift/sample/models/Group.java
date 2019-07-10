@@ -13,13 +13,13 @@ public class Group implements Cloneable {
     @ApiModelProperty(value = "Уникальный идентификатор события", required = false)
     private String id;
 
-    @ApiModelProperty(value = "Названия группы", required = true)
+    @ApiModelProperty(value = "Названия группы до 50 символов", required = true)
     private String title;
 
-    @ApiModelProperty(value = "Дата и время начала", required = true)
+    @ApiModelProperty(value = "Дата и время начала формата дд.мм.гггг", required = true)
     private String startTime;
 
-    @ApiModelProperty(value = "Дата и время окончания", required = true)
+    @ApiModelProperty(value = "Дата и время окончания формата дд.мм.гггг", required = true)
     private String endTime;
 
     @ApiModelProperty(value = "Идентификатор начала события", required = false)
@@ -28,19 +28,19 @@ public class Group implements Cloneable {
     @ApiModelProperty(value = "Идентификатор окончания события", required = false)
     private boolean finished;
 
-    @ApiModelProperty(value = "Ограничение на количество участников", required = true)
+    @ApiModelProperty(value = "Ограничение на количество участников. 0 означает неограниченное кол-во участников", required = true)
     private int amountLimit;
 
     @ApiModelProperty(value = "Количество участников на данный момент", required = false)
     private int amount;
 
-    @ApiModelProperty(value = "Минимальная сумма подарка", required = true)
+    @ApiModelProperty(value = "Минимальная сумма подарка. От 0 до maxValue", required = true)
     private int minValue;
 
-    @ApiModelProperty(value = "Максимальная сумма подарка", required = true)
+    @ApiModelProperty(value = "Максимальная сумма подарка. От minValue до 5000", required = true)
     private int maxValue;
 
-    @ApiModelProperty(value = "Способ дарения подарка", required = true)
+    @ApiModelProperty(value = "Способ дарения подарка до 200 символов", required = true)
     private String method;
 
     @ApiModelProperty(value = "Создатель группы", required = false)
