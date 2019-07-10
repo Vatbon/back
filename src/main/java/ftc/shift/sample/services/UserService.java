@@ -25,7 +25,7 @@ public class UserService {
             return null;
         if (user.getName().length() > 30 | user.getName().length() < 2)
             return null;
-        Pattern p = Pattern.compile("[^a-zA-Zа-яА-Я0-9]");
+        Pattern p = Pattern.compile("[^a-zA-Zа-яА-Я0-9_ё]");
         if (p.matcher(user.getName()).find())
             return null;
         return userRepository.createUser(user);
