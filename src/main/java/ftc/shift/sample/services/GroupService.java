@@ -77,7 +77,7 @@ public class GroupService {
             if (group.getAmountLimit() < 3)
                 return -1;
 
-        if (group.getMinValue() >= 0 || group.getMinValue() > group.getMaxValue() || group.getMaxValue() <= 5000)
+        if (group.getMinValue() < 0 || group.getMinValue() > group.getMaxValue() || group.getMaxValue() > 5000)
             return -1;
         return 0;
     }
