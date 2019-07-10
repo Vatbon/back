@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel
 public class Prefer {
-    @ApiModelProperty(value = "Пожелание к подарку", required = true)
+    @ApiModelProperty(value = "Пожелание к подарку не более 200 символов", required = true)
     private String prefer;
 
     public Prefer() {

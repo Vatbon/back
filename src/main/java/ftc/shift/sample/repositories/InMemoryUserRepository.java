@@ -9,19 +9,22 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+/**
+ * В репозитории уже существуют 7 пользователей: "Анастасия","Владимир","Владислав","Данила","Ксения","Максим","Никита"
+ */
 @Repository
 public class InMemoryUserRepository implements UserRepository {
 
     private static final Map<String, User> userCache = new HashMap<>();
 
     public InMemoryUserRepository() {
-        this.createUser(new User("", "Anastasia"));
-        this.createUser(new User("", "Vladimir"));
-        this.createUser(new User("", "Vladislav"));
-        this.createUser(new User("", "Danila"));
-        this.createUser(new User("", "Kseniya"));
-        this.createUser(new User("", "Maksim"));
-        this.createUser(new User("", "Nikita"));
+        this.createUser(new User("", "Анастасия"));
+        this.createUser(new User("", "Владимир"));
+        this.createUser(new User("", "Владислав"));
+        this.createUser(new User("", "Данила"));
+        this.createUser(new User("", "Ксения"));
+        this.createUser(new User("", "Максим"));
+        this.createUser(new User("", "Никита"));
     }
 
     @Override
@@ -38,7 +41,7 @@ public class InMemoryUserRepository implements UserRepository {
     public User createUser(User user) {
         if (user == null || user.getName() == null)
             return null;
-        Pattern p = Pattern.compile("[^a-zA-Z0-9]");
+        Pattern p = Pattern.compile("[^a-zA-Zа-яА-Я0-9]");
         if (p.matcher(user.getName()).find())
             return null;
         user.setId(String.valueOf(IdFactory.getNewId()));
