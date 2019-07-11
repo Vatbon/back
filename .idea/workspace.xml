@@ -8,20 +8,43 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/ftc.shift.backend.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/ftc.shift.backend.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/ftc.shift.backend.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/ftc.shift.backend.test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/ftc.shift.backend.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/ftc.shift.backend.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/ftc.shift.backend.test.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/GroupsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/GroupsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryGroupRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryGroupRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/storages/GroupStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/storages/GroupStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/storages/UserStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/storages/UserStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/GroupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/GroupService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/util/Serializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/util/Serializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postman/Shift.postman_collection.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/JacksonConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/JacksonConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/SpringbootSampleApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/SpringbootSampleApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/api/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/GroupsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/api/GroupsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/exception/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/exception/NotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/GameInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/Prefer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/Prefer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/ResponsePreferEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/ResponsePreferEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/GameRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/GameRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/GroupRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/GroupRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryGameRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/InMemoryGameRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryGroupRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/InMemoryGroupRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/InMemoryUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/storages/GroupStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/storages/GroupStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/storages/UserStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/storages/UserStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/services/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/services/GameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/GroupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/services/GroupService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/TimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/services/TimeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/util/IdFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/util/IdFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/util/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/util/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ftc/shift/sample/util/Serializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/util/Serializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ftc/shift/sample/SpringbootSampleApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ftc/shift/secretsanta/SpringbootSampleApplicationTests.java" afterDir="false" />
     </list>
+    <list id="f60b5c79-7e44-4fb2-9f2d-d292e3f3cbe0" name="Revert &quot;+MaxValue&lt;5000 +RussianLangInUsername&quot;" comment="Revert &quot;+MaxValue&lt;5000 +RussianLangInUsername&quot;&#10;&#10;This reverts commit 2bc7f109" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -39,34 +62,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryGroupRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/GroupService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/storages/GroupStorage.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/Group.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
-              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+              <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/Prefer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -75,121 +83,94 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/UserService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/InMemoryGameRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
+            <state relative-caret-position="361">
+              <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#543#544#0" expanded="true" />
-                <element signature="e#596#597#0" expanded="true" />
-                <element signature="e#736#737#0" expanded="true" />
-                <element signature="e#802#803#0" expanded="true" />
-                <element signature="e#852#853#0" expanded="true" />
-                <element signature="e#909#910#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/BookRepository.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/GroupRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/util/Serializer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="562">
-              <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/AuthController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+            <state relative-caret-position="114">
+              <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/GameInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+              <folding>
+                <element signature="docComment;class#GameInfo#0" />
+                <element signature="method#GameInfo#0;class#GameInfo#0" />
+                <element signature="e#353#354#0" expanded="true" />
+                <element signature="e#381#382#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/GroupsController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/exception/NotFoundException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="657">
-              <caret line="96" column="43" selection-start-line="96" selection-start-column="43" selection-end-line="96" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="209">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/Group.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/GameRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="108" column="13" lean-forward="true" selection-start-line="108" selection-start-column="13" selection-end-line="108" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1590#1591#0" expanded="true" />
-                <element signature="e#1615#1616#0" expanded="true" />
-                <element signature="e#1651#1652#0" expanded="true" />
-                <element signature="e#1679#1680#0" expanded="true" />
-                <element signature="e#1711#1712#0" expanded="true" />
-                <element signature="e#1739#1740#0" expanded="true" />
-                <element signature="e#1781#1782#0" expanded="true" />
-                <element signature="e#1815#1816#0" expanded="true" />
-                <element signature="e#1851#1852#0" expanded="true" />
-                <element signature="e#1883#1884#0" expanded="true" />
-                <element signature="e#1933#1934#0" expanded="true" />
-                <element signature="e#1975#1976#0" expanded="true" />
-                <element signature="e#2009#2010#0" expanded="true" />
-                <element signature="e#2039#2040#0" expanded="true" />
-                <element signature="e#2085#2086#0" expanded="true" />
-                <element signature="e#2123#2124#0" expanded="true" />
-                <element signature="e#2158#2159#0" expanded="true" />
-                <element signature="e#2192#2193#0" expanded="true" />
-                <element signature="e#2243#2244#0" expanded="true" />
-                <element signature="e#2289#2290#0" expanded="true" />
-                <element signature="e#2318#2319#0" expanded="true" />
-                <element signature="e#2345#2346#0" expanded="true" />
-                <element signature="e#2383#2384#0" expanded="true" />
-                <element signature="e#2415#2416#0" expanded="true" />
-                <element signature="e#2680#2681#0" expanded="true" />
-                <element signature="e#2710#2711#0" expanded="true" />
-                <element signature="e#2757#2758#0" expanded="true" />
-                <element signature="e#2795#2796#0" expanded="true" />
-                <element signature="e#2830#2831#0" expanded="true" />
-                <element signature="e#2861#2862#0" expanded="true" />
-                <element signature="e#2910#2911#0" expanded="true" />
-                <element signature="e#2950#2951#0" expanded="true" />
-                <element signature="e#3088#3089#0" expanded="true" />
-                <element signature="e#3124#3125#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="76">
+              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/User.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+            <state relative-caret-position="285">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#User#0;class#User#0" />
                 <element signature="method#User#1;class#User#0" />
                 <element signature="method#equals#0;class#User#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/ResponsePreferEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+              <folding>
+                <element signature="method#ResponsePreferEntity#0;class#ResponsePreferEntity#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/UserRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -213,25 +194,42 @@
         <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/Logg.java" />
         <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/BooksController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/Logger.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/util/Logger.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/Book.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/util/IdFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/GroupRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/AuthContoller.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/UserRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/AuthService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryUserRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/util/Serializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/storages/UserStorage.java" />
         <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/storages/GroupStorage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/SpringbootSampleApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/UserRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/Book.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/ResponsePreferEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/GroupRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/BookService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/util/IdFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/util/Logger.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/GameRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/GameInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/GroupsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/GameService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryBookRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/BookRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryGroupRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/AuthController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/TimeService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/Group.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryGameRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryUserRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/GroupService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/GroupsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/Prefer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/settings.gradle" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/JacksonConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/SwaggerConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/InMemoryGroupRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/GroupRepository.java" />
       </list>
     </option>
   </component>
@@ -279,7 +277,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="secretsanta" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="backend" type="b2602c69:ProjectViewProjectNode" />
@@ -287,7 +285,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="secretsanta" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -296,7 +294,16 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="secretsanta" type="462c0819:PsiDirectoryNode" />
+              <item name="exception" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shift" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="secretsanta" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -305,7 +312,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="secretsanta" type="462c0819:PsiDirectoryNode" />
               <item name="repositories" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -314,7 +321,17 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="secretsanta" type="462c0819:PsiDirectoryNode" />
+              <item name="repositories" type="462c0819:PsiDirectoryNode" />
+              <item name="storages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shift" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="secretsanta" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -323,7 +340,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="secretsanta" type="462c0819:PsiDirectoryNode" />
               <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -347,6 +364,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
@@ -369,7 +387,7 @@
   <component name="RunManager">
     <configuration name="SpringbootSampleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ftc.shift.backend.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="ftc.shift.sample.SpringbootSampleApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ftc.shift.secretsanta.SpringbootSampleApplication" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <method v="2">
@@ -390,12 +408,21 @@
       <workItem from="1561970716258" duration="6214000" />
       <workItem from="1562046998119" duration="17038000" />
       <workItem from="1562135825285" duration="13229000" />
-      <workItem from="1562220022182" duration="5671000" />
+      <workItem from="1562220022182" duration="7570000" />
+      <workItem from="1562303503404" duration="17278000" />
+      <workItem from="1562486231832" duration="12758000" />
+      <workItem from="1562557546042" duration="1455000" />
+      <workItem from="1562567847638" duration="10511000" />
+      <workItem from="1562636963900" duration="40000" />
+      <workItem from="1562637050467" duration="629000" />
+      <workItem from="1562677150137" duration="406000" />
+      <workItem from="1562734848104" duration="10946000" />
+      <workItem from="1562816533478" duration="480000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42152000" />
+    <option name="totallyTimeSpent" value="98554000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="30" width="1923" height="1052" extended-state="6" />
@@ -405,26 +432,26 @@
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" visible="true" weight="0.25787506" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" visible="true" weight="0.2819007" />
       <window_info id="Structure" order="5" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Spring" order="0" weight="0.32899022" />
-      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="1" weight="0.32899022" />
       <window_info anchor="bottom" id="Docker" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="4" weight="0.32899022" />
       <window_info anchor="bottom" id="Java Enterprise" order="5" />
       <window_info anchor="bottom" id="Database Changes" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32899022" />
       <window_info anchor="bottom" id="Build" order="8" weight="0.32899022" />
       <window_info anchor="bottom" id="Message" order="9" />
-      <window_info anchor="bottom" id="Find" order="10" />
-      <window_info anchor="bottom" id="Run" order="11" weight="0.32899022" />
+      <window_info anchor="bottom" id="Find" order="10" weight="0.32899022" />
+      <window_info active="true" anchor="bottom" id="Run" order="11" visible="true" weight="0.23995657" />
       <window_info anchor="bottom" id="Debug" order="12" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="13" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="14" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="15" />
       <window_info anchor="right" id="Palette" order="0" />
-      <window_info active="true" anchor="right" x="0" y="0" width="430" height="852" id="Documentation" order="1" side_tool="true" visible="true" weight="0.32995194" />
+      <window_info anchor="right" x="0" y="0" width="430" height="852" id="Documentation" order="1" side_tool="true" weight="0.32995194" />
       <window_info anchor="right" id="Gradle" order="2" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
@@ -438,14 +465,17 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/exception/NotFoundException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/openjdk-11/lib/src.zip!/java.base/java/text/SimpleDateFormat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10317">
@@ -457,10 +487,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/postman/Shift.postman_collection.json">
+    <entry file="file://$PROJECT_DIR$/.gradle/5.1.1/gc.properties">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/util/Logger.java">
+    <entry file="file://$PROJECT_DIR$/data/groups">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/users">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/util/Serializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/openjdk-11/lib/src.zip!/java.base/java/util/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="242" column="6" selection-start-line="242" selection-start-column="6" selection-end-line="242" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/BooksController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/BookService.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/util/IdFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/util/Logger.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
@@ -470,52 +529,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/util/IdFactory.java">
+    <entry file="jar:///usr/lib/jvm/openjdk-11/lib/src.zip!/java.base/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" selection-start-line="2" selection-end-line="8" selection-end-column="1" />
+        <state relative-caret-position="18677">
+          <caret line="1041" selection-start-line="1041" selection-end-line="1041" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/BookService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/BookExtractor.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/BookRepository.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/DatabaseBookRepository.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryBookRepository.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/Book.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/services/GameService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#417#418#0" expanded="true" />
-            <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-            <element signature="e#579#580#0" expanded="true" />
-            <element signature="e#770#771#0" expanded="true" />
-            <element signature="e#821#822#0" expanded="true" />
-            <element signature="e#875#876#0" expanded="true" />
-            <element signature="e#931#932#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
-            <element signature="e#1039#1040#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/GroupRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+        <state relative-caret-position="-552">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gradle/5.1.1/gc.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ftc/shift/sample/SpringbootSampleApplicationTests.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/services/AuthService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
+        <state relative-caret-position="380">
+          <caret line="20" column="35" lean-forward="true" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#322#323#0" expanded="true" />
+            <element signature="e#368#369#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/services/GroupService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="76" column="43" selection-start-line="76" selection-start-column="43" selection-end-line="76" selection-end-column="43" />
+          <folding>
+            <element signature="method#GroupService#0;class#GroupService#0" />
+            <element signature="method#provideAllGroups#0;class#GroupService#0" />
+            <element signature="e#1274#1324#1" />
+            <element signature="e#1360#1419#1" />
+            <element signature="method#provideGroup#0;class#GroupService#0" />
+            <element signature="method#createGroup#0;class#GroupService#0" />
+            <element signature="e#1750#1786#1" />
+            <element signature="method#updateGroup#0;class#GroupService#0" />
+            <element signature="method#deleteGroup#0;class#GroupService#0" />
+            <element signature="method#provideUsersGroups#0;class#GroupService#0" />
+            <element signature="method#receiveGift#0;class#GroupService#0" />
+            <element signature="method#leaveGroup#0;class#GroupService#0" />
+            <element signature="method#getGiftInfo#0;class#GroupService#0" />
+            <element signature="method#presentGift#0;class#GroupService#0" />
+            <element signature="method#_startGroup#0;class#GroupService#0" />
+            <element signature="method#_finishGroup#0;class#GroupService#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ftc/shift/secretsanta/SpringbootSampleApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -523,199 +598,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/JacksonConfiguration.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/services/TimeService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state relative-caret-position="190">
+          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/services/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="27" column="55" selection-start-line="27" selection-start-column="55" selection-end-line="27" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/postman/Shift.postman_collection.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/SpringbootSampleApplication.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/SwaggerConfig.java">
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state>
+          <caret column="28" selection-start-column="28" selection-end-column="28" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradlew.bat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradlew">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="513">
+          <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryBookRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/AuthService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#368#369#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/UserRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/groups">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/users">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryUserRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/storages/UserStorage.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/storages/UserStorage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/Book.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/BooksController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="15" column="112" selection-start-line="15" selection-start-column="75" selection-end-line="15" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/BookRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#543#544#0" expanded="true" />
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#736#737#0" expanded="true" />
-            <element signature="e#802#803#0" expanded="true" />
-            <element signature="e#852#853#0" expanded="true" />
-            <element signature="e#909#910#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
-          <folding>
-            <element signature="method#User#0;class#User#0" />
-            <element signature="method#User#1;class#User#0" />
-            <element signature="method#equals#0;class#User#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/AuthController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/models/Group.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="108" column="13" lean-forward="true" selection-start-line="108" selection-start-column="13" selection-end-line="108" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1590#1591#0" expanded="true" />
-            <element signature="e#1615#1616#0" expanded="true" />
-            <element signature="e#1651#1652#0" expanded="true" />
-            <element signature="e#1679#1680#0" expanded="true" />
-            <element signature="e#1711#1712#0" expanded="true" />
-            <element signature="e#1739#1740#0" expanded="true" />
-            <element signature="e#1781#1782#0" expanded="true" />
-            <element signature="e#1815#1816#0" expanded="true" />
-            <element signature="e#1851#1852#0" expanded="true" />
-            <element signature="e#1883#1884#0" expanded="true" />
-            <element signature="e#1933#1934#0" expanded="true" />
-            <element signature="e#1975#1976#0" expanded="true" />
-            <element signature="e#2009#2010#0" expanded="true" />
-            <element signature="e#2039#2040#0" expanded="true" />
-            <element signature="e#2085#2086#0" expanded="true" />
-            <element signature="e#2123#2124#0" expanded="true" />
-            <element signature="e#2158#2159#0" expanded="true" />
-            <element signature="e#2192#2193#0" expanded="true" />
-            <element signature="e#2243#2244#0" expanded="true" />
-            <element signature="e#2289#2290#0" expanded="true" />
-            <element signature="e#2318#2319#0" expanded="true" />
-            <element signature="e#2345#2346#0" expanded="true" />
-            <element signature="e#2383#2384#0" expanded="true" />
-            <element signature="e#2415#2416#0" expanded="true" />
-            <element signature="e#2680#2681#0" expanded="true" />
-            <element signature="e#2710#2711#0" expanded="true" />
-            <element signature="e#2757#2758#0" expanded="true" />
-            <element signature="e#2795#2796#0" expanded="true" />
-            <element signature="e#2830#2831#0" expanded="true" />
-            <element signature="e#2861#2862#0" expanded="true" />
-            <element signature="e#2910#2911#0" expanded="true" />
-            <element signature="e#2950#2951#0" expanded="true" />
-            <element signature="e#3088#3089#0" expanded="true" />
-            <element signature="e#3124#3125#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/services/GroupService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/storages/GroupStorage.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/storages/GroupStorage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
@@ -725,30 +662,158 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/util/Serializer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/SwaggerConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+        <state relative-caret-position="361">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/repositories/InMemoryGroupRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/SpringbootSampleApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+        <state relative-caret-position="171">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/JacksonConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/api/AuthController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="32" column="55" selection-start-line="32" selection-start-column="55" selection-end-line="32" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/sample/api/GroupsController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/api/GroupsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="657">
-          <caret line="96" column="43" selection-start-line="96" selection-start-column="43" selection-end-line="96" selection-end-column="43" />
+        <state relative-caret-position="-1832">
+          <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/InMemoryUserRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/InMemoryGroupRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="88" selection-start-line="88" selection-end-line="88" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/InMemoryGameRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/UserRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/GroupRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/repositories/GameRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#User#0;class#User#0" />
+            <element signature="method#User#1;class#User#0" />
+            <element signature="method#equals#0;class#User#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/ResponsePreferEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <folding>
+            <element signature="method#ResponsePreferEntity#0;class#ResponsePreferEntity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/Prefer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/Group.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/models/GameInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+          <folding>
+            <element signature="docComment;class#GameInfo#0" />
+            <element signature="method#GameInfo#0;class#GameInfo#0" />
+            <element signature="e#353#354#0" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ftc/shift/secretsanta/exception/NotFoundException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>

@@ -14,7 +14,7 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-group = 'ftc.shift'
+group = 'ftc.shift.rpo'
 version = '0.0.1'
 sourceCompatibility = 1.8
 
@@ -24,7 +24,8 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
-
     compile("io.springfox:springfox-swagger2:2.9.2")
     compile("io.springfox:springfox-swagger-ui:2.9.2")
+    compile("com.h2database:h2")
+    compile("org.springframework.boot:spring-boot-starter-jdbc")
 }
