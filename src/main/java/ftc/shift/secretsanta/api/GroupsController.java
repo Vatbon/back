@@ -110,7 +110,7 @@ public class GroupsController {
             @PathVariable("groupId") String groupId) {
         Group resultGroup = service.provideGroup(userId, groupId);
         Prefer resultPrefer = service.getPrefer(userId, groupId);
-        if (resultGroup == null || resultPrefer == null)
+        if (resultGroup == null)
             return ResponseEntity.badRequest().build();
         ApiCreationGroupEntity result = new ApiCreationGroupEntity();
         result.setGroup(resultGroup);
