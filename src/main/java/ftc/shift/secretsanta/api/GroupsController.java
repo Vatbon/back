@@ -116,7 +116,7 @@ public class GroupsController {
         result.setGroup(resultGroup);
         result.setPrefer(resultPrefer);
         if (resultPrefer == null)
-            result.setPrefer(null);
+            result.setPrefer(new Prefer(null));
         return ResponseEntity.ok(result);
     }
 
