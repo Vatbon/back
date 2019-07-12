@@ -1,10 +1,12 @@
 package ftc.shift.secretsanta.api;
 
+import ftc.shift.secretsanta.models.ApiCreationGroupEntity;
 import ftc.shift.secretsanta.models.Group;
 import ftc.shift.secretsanta.models.Prefer;
 import ftc.shift.secretsanta.models.ResponsePreferEntity;
 import ftc.shift.secretsanta.services.GroupService;
 import ftc.shift.secretsanta.util.Logger;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,14 @@ import java.util.Collection;
  * Все аннотации, начинающиеся с @Api нужны только для построения <a href="http://localhost:8081/swagger-ui.html#/">swagger-документации</a>
  */
 @RestController
+@Api(description = "API для работы с группами")
 public class GroupsController {
 
     @Autowired
     private GroupService service;
 
     private static final String GROUPS_PATH_V1 = "/api/v1/groups";
+    private static final String GROUPS_PATH_V2 = "/api/v2/groups";
 
 
     @GetMapping(GROUPS_PATH_V1)
@@ -72,14 +76,29 @@ public class GroupsController {
     public ResponseEntity<Group> createGroup(
             @ApiParam(value = "Уникальный идентификатор пользателя")
             @RequestHeader("userId") String userId,
-            @ApiParam(value = "Тело группы")
+            @ApiParam(value = "Тело ApiCreationGroupEntity запроса")
             @RequestBody Group group) {
         Group result = service.createGroup(userId, group);
         Logger.log("POST " + GROUPS_PATH_V1 + " userId = " + userId + " groupName = " + group.getTitle());
         if (result == null)
             return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok(group);
+    }
 
-        return ResponseEntity.ok(result);
+    @PostMapping(GROUPS_PATH_V2)
+    @ApiOperation(value = "Создание новой группы с использованием ApiCreationGroupEntity")
+    public ResponseEntity<ApiCreationGroupEntity> createGroup(
+            @ApiParam(value = "Уникальный идентификатор пользателя")
+            @RequestHeader("userId") String userId,
+            @ApiParam(value = "Тело ApiCreationGroupEntity запроса")
+            @RequestBody ApiCreationGroupEntity creationGroupEntity) {
+        Group result = service.createGroup(userId, creationGroupEntity.getGroup());
+        service.changePrefer(result.getId(), userId, creationGroupEntity.getPrefer().getPrefer());
+        Logger.log("POST " + GROUPS_PATH_V2 + " userId = " + userId + " groupName = " + creationGroupEntity.getGroup().getTitle());
+        if (result == null)
+            return ResponseEntity.badRequest().build();
+        creationGroupEntity.setGroup(result);
+        return ResponseEntity.ok(creationGroupEntity);
     }
 
     @PutMapping(GROUPS_PATH_V1 + "/{groupId}")

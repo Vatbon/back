@@ -55,6 +55,8 @@ public class GroupService {
             return null;
         Group result = groupRepository.createGroup(userId, group);
         result.addParticipant(userService.provideUser(userId), "");
+        result.getHost().addGroupAsParticipant(result.getId());
+        result.getHost().addGroupAsHost(result.getId());
         return result;
 
     }
@@ -116,9 +118,12 @@ public class GroupService {
             return -1;
         if (group.getAllParticipants().contains(userService.provideUser(userId)))
             return -1;
+        if (prefer == null)
+            return -1;
         if (prefer.length() > 200)
             return -1;
         group.addParticipant(userService.provideUser(userId), prefer);
+        userService.provideUser(userId).addGroupAsParticipant(groupId);
         return 0;
     }
 

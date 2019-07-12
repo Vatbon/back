@@ -3,7 +3,7 @@ package ftc.shift.secretsanta.models;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel
+@ApiModel(value = "Модель ответа после начала игры")
 public class ResponsePreferEntity {
     @ApiModelProperty(value = "Пользователь, которому нужно сделать подарок", required = true)
     private User user;

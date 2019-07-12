@@ -2,6 +2,7 @@ package ftc.shift.secretsanta.api;
 
 import ftc.shift.secretsanta.models.User;
 import ftc.shift.secretsanta.services.AuthService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Api(description = "API для авторизации клиента")
 public class AuthController {
 
     private final String AUTH_PATH_V1 = "/api/v1/auth";

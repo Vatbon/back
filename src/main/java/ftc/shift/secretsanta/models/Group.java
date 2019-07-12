@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-@ApiModel
+@ApiModel(value = "Модель группы")
 public class Group implements Cloneable {
     @ApiModelProperty(value = "Уникальный идентификатор события", required = false)
     private String id;

@@ -3,6 +3,7 @@ package ftc.shift.secretsanta.services;
 import ftc.shift.secretsanta.models.User;
 import ftc.shift.secretsanta.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.regex.Pattern;
@@ -12,7 +13,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(@Qualifier("inMemoryUserRepository") UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

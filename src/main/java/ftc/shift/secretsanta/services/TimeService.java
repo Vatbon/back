@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 @Service
 public class TimeService {
@@ -80,6 +77,9 @@ public class TimeService {
             endTimeDate = new SimpleDateFormat(dateFormat).parse(group.getEndTime());
             Date now = new Date();
 
+            startTimeDate = zeroDate(startTimeDate);
+            endTimeDate = zeroDate(endTimeDate);
+
             if (!startTimeDate.after(now))
                 return false;
             if (!startTimeDate.before(endTimeDate))
@@ -91,5 +91,17 @@ public class TimeService {
         } catch (ParseException e) {
             return false;
         }
+    }
+
+    private Date zeroDate(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        cal.set(Calendar.MILLISECOND, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+
+        return cal.getTime();
     }
 }

@@ -3,7 +3,7 @@ package ftc.shift.secretsanta.models;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel
+@ApiModel(value = "Модель \"желания\"")
 public class Prefer {
     @ApiModelProperty(value = "Пожелание к подарку не более 200 символов", required = true)
     private String prefer;
