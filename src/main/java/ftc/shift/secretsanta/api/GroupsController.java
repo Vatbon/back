@@ -76,7 +76,7 @@ public class GroupsController {
     public ResponseEntity<Group> createGroup(
             @ApiParam(value = "Уникальный идентификатор пользателя")
             @RequestHeader("userId") String userId,
-            @ApiParam(value = "Тело ApiCreationGroupEntity запроса")
+            @ApiParam(value = "Тело группы")
             @RequestBody Group group) {
         Group result = service.createGroup(userId, group);
         Logger.log("POST " + GROUPS_PATH_V1 + " userId = " + userId + " groupName = " + group.getTitle());
@@ -115,6 +115,8 @@ public class GroupsController {
         ApiCreationGroupEntity result = new ApiCreationGroupEntity();
         result.setGroup(resultGroup);
         result.setPrefer(resultPrefer);
+        if (resultPrefer == null)
+            result.setPrefer(null);
         return ResponseEntity.ok(result);
     }
 
