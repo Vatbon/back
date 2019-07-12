@@ -101,23 +101,6 @@ public class GroupsController {
         return ResponseEntity.ok(creationGroupEntity);
     }
 
-    @GetMapping(GROUPS_PATH_V2 + "/{groupId}")
-    @ApiOperation(value = "Получение полного тела группы и пожелания пользователя с использованием ApiCreationGroupEntity")
-    public ResponseEntity<ApiCreationGroupEntity> getGroupV2(
-            @ApiParam(value = "Уникальный идентификатор пользателя")
-            @RequestHeader("userId") String userId,
-            @ApiParam(value = "Уникальный идентификатор группы")
-            @PathVariable("groupId") String groupId) {
-        Group resultGroup = service.provideGroup(userId, groupId);
-        Prefer resultPrefer = service.getPrefer(userId, groupId);
-        if (resultGroup == null || resultPrefer == null)
-            return ResponseEntity.badRequest().build();
-        ApiCreationGroupEntity result = new ApiCreationGroupEntity();
-        result.setGroup(resultGroup);
-        result.setPrefer(resultPrefer);
-        return ResponseEntity.ok(result);
-    }
-
     @PutMapping(GROUPS_PATH_V1 + "/{groupId}")
     @ApiOperation(value = "Изменение существующей группы")
     public ResponseEntity<Group> patchGroup(

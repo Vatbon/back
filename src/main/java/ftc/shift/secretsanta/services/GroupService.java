@@ -2,7 +2,6 @@ package ftc.shift.secretsanta.services;
 
 import ftc.shift.secretsanta.exception.NotFoundException;
 import ftc.shift.secretsanta.models.Group;
-import ftc.shift.secretsanta.models.Prefer;
 import ftc.shift.secretsanta.models.ResponsePreferEntity;
 import ftc.shift.secretsanta.models.User;
 import ftc.shift.secretsanta.repositories.GroupRepository;
@@ -215,15 +214,5 @@ public class GroupService {
         }
         groupRepository._finishGroup(groupId);
         return 0;
-    }
-
-    public Prefer getPrefer(String userId, String groupId) {
-        if (!userService.isRegistered(userId))
-            return null;
-        Group group = groupRepository.fetchGroup(groupId);
-        User user = userService.provideUser(userId);
-        if (!group.getAllParticipants().contains(user))
-            return null;
-        return new Prefer(group.getPrefer(userId));
     }
 }

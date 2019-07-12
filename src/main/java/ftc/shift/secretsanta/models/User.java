@@ -12,9 +12,9 @@ public class User {
     private String id;
     @ApiModelProperty(value = "Имя пользователя от 2 до 30 символов без специальных символов вроде !, \" ,№ ,; ,% ,: ,? ,*", required = true)
     private String name;
-    @ApiModelProperty(value = "Список уникальных идентификаторов групп, в которых польщователь принмает участие", required = false)
+    @ApiModelProperty(value = "Список групп, в которых польщователь принмает участие", required = false)
     private final List<String> groupsAsParticipant = new ArrayList<>();
-    @ApiModelProperty(value = "Список уникальных идентификаторов групп, где пользователь является создателем", required = false)
+    @ApiModelProperty(value = "Список групп, где пользователь является создателем", required = false)
     private final List<String> groupsAsHost = new ArrayList<>();
 
     public User() {
