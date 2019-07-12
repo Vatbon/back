@@ -13,7 +13,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Autowired
-    public UserService(@Qualifier("databaseUserRepository") UserRepository userRepository) {
+    public UserService(@Qualifier("inMemoryUserRepository") UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
