@@ -55,9 +55,11 @@ public class GroupService {
         if (checkRules(group) == -1)
             return null;
         Group result = groupRepository.createGroup(userId, group);
-        result.addParticipant(userService.provideUser(userId), "");
-        result.getHost().addGroupAsParticipant(result.getId());
-        result.getHost().addGroupAsHost(result.getId());
+        User host = userService.provideUser(userId);
+        result.addParticipant(host, "");
+        host.addGroupAsParticipant(result.getId());
+        host.addGroupAsHost(result.getId());
+        userService.updateUser(host);
         return result;
 
     }
@@ -92,8 +94,9 @@ public class GroupService {
             return null;
         if (group.getTitle() == null)
             return null;
-
-        return groupRepository.updateGroup(userId, groupId, group);
+        if (!userId.equals(groupRepository.fetchGroup(groupId).getHost().getId()))
+            return null;
+        return groupRepository.updateGroup(groupId, group);
     }
 
     public int deleteGroup(String userId, String groupId) {
@@ -124,7 +127,10 @@ public class GroupService {
         if (prefer.length() > 200)
             return -1;
         group.addParticipant(userService.provideUser(userId), prefer);
-        userService.provideUser(userId).addGroupAsParticipant(groupId);
+        User user = userService.provideUser(userId);
+        user.addGroupAsParticipant(groupId);
+        userService.updateUser(user);
+        groupRepository.updateGroup(groupId, group);
         return 0;
     }
 
@@ -139,7 +145,7 @@ public class GroupService {
             return -1;
         group.deleteParticipant(user);
         group.addParticipant(user, prefer);
-        groupRepository.updateGroup(groupId, groupId, group);
+        groupRepository.updateGroup(groupId, group);
         return 0;
     }
 
@@ -151,6 +157,7 @@ public class GroupService {
         if (!group.getAllParticipants().contains(user))
             return -1;
         group.receiveGift(user);
+        groupRepository.updateGroup(groupId, group);
         return 0;
     }
 
@@ -164,6 +171,9 @@ public class GroupService {
         if (!group.getAllParticipants().contains(user))
             return -1;
         group.deleteParticipant(user);
+        user.deleteGroupAsParticipant(groupId);
+        userService.updateUser(user);
+        groupRepository.updateGroup(groupId, group);
         return 0;
     }
 
@@ -176,6 +186,7 @@ public class GroupService {
             return null;
         if (!group.isStarted() || group.isFinished())
             return null;
+        groupRepository.updateGroup(groupId, group);
         return gameService.getGiftInfo(groupId, userId);
     }
 
@@ -187,11 +198,22 @@ public class GroupService {
         if (!group.getAllParticipants().contains(user))
             return -1;
         group.presentGift(user);
+        groupRepository.updateGroup(groupId, group);
         return 0;
     }
 
     Collection<Group> _provideAllGroups() {
         return groupRepository.getAllGroups();
+    }
+
+    public Prefer getPrefer(String userId, String groupId) {
+        if (!userService.isRegistered(userId))
+            return null;
+        Group group = groupRepository.fetchGroup(groupId);
+        User user = userService.provideUser(userId);
+        if (!group.getAllParticipants().contains(user))
+            return null;
+        return new Prefer(group.getPrefer(userId));
     }
 
     @Deprecated
@@ -215,15 +237,5 @@ public class GroupService {
         }
         groupRepository._finishGroup(groupId);
         return 0;
-    }
-
-    public Prefer getPrefer(String userId, String groupId) {
-        if (!userService.isRegistered(userId))
-            return null;
-        Group group = groupRepository.fetchGroup(groupId);
-        User user = userService.provideUser(userId);
-        if (!group.getAllParticipants().contains(user))
-            return null;
-        return new Prefer(group.getPrefer(userId));
     }
 }

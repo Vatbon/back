@@ -12,6 +12,7 @@ import java.util.Map;
  * В репозитории уже существуют 7 пользователей: "Анастасия","Владимир","Владислав","Данила","Ксения","Максим","Никита"
  */
 @Repository
+
 public class InMemoryUserRepository implements UserRepository {
 
     private static final Map<String, User> userCache = new HashMap<>();
@@ -63,6 +64,29 @@ public class InMemoryUserRepository implements UserRepository {
             }
         }
         return null;
+    }
+
+    @Override
+    public User updateUser(User user) {
+        if (user.getName() == null)
+            return null;
+        if (user.getId() == null)
+            return null;
+        if (!userCache.containsKey(user.getId())) {
+            return null;
+        }
+        User old = userCache.get(user.getId());
+        user.setName(old.getName());
+
+        for (String s : old.getGroupsAsParticipant()) {
+            user.addGroupAsParticipant(s);
+        }
+        for (String s : old.getGroupsAsHost()) {
+            user.addGroupAsHost(s);
+        }
+        userCache.put(user.getId(), user);
+
+        return user;
     }
 
 

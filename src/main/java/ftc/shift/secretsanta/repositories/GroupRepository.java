@@ -7,7 +7,7 @@ import java.util.Collection;
 public interface GroupRepository {
     Group fetchGroup(String groupId);
 
-    Group updateGroup(String userId, String groupId, Group group);
+    Group updateGroup(String groupId, Group group);
 
     void deleteGroup(String groupId);
 

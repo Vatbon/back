@@ -21,23 +21,13 @@ public class UserExtractor implements ResultSetExtractor<List<User>> {
         while (rs.next()) {
             String userId = rs.getString("USER_ID");
 
-            User user;
             if (!users.containsKey(userId)) {
-                user = new User();
+                User user = new User();
 
                 user.setId(rs.getString("USER_ID"));
                 user.setName(rs.getString("NAME"));
 
                 users.put(userId, user);
-            } else {
-                user = users.get(userId);
-            }
-            try {
-                String groupPart = rs.getString("USERS_PART");
-                user.getGroupsAsParticipant().add(groupPart);
-                String groupHost = rs.getString("USERS_HOST");
-                user.getGroupsAsParticipant().add(groupHost);
-            } catch (SQLException ignored) {
             }
         }
 

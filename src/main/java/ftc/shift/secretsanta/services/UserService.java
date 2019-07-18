@@ -43,4 +43,8 @@ public class UserService {
     public boolean isRegistered(String userId) {
         return userRepository.containsName(provideUser(userId).getName());
     }
+
+    public User updateUser(User user) {
+        return userRepository.updateUser(user);
+    }
 }

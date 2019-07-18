@@ -10,4 +10,6 @@ public interface UserRepository {
     boolean containsName(String name);
 
     User getUserByName(String name);
+
+    User updateUser(User user);
 }

@@ -34,15 +34,13 @@ public class InMemoryGroupRepository implements GroupRepository {
     }
 
     @Override
-    public Group updateGroup(String userId, String groupId, Group group) {
+    public Group updateGroup(String groupId, Group group) {
         if (!groupCache.containsKey(groupId)) {
             throw new NotFoundException();
         }
         Group oldGroup = null;
-        if (groupCache.get(groupId).getHost().getId().equals(userId)) {
-            oldGroup = groupCache.get(groupId);
-            oldGroup.setTitle(group.getTitle());
-        }
+        oldGroup = groupCache.get(groupId);
+        oldGroup.setTitle(group.getTitle());
         return oldGroup;
     }
 
@@ -101,8 +99,5 @@ public class InMemoryGroupRepository implements GroupRepository {
             throw new NotFoundException();
         }
         groupCache.get(groupId).setFinished(true);
-    }
-
-    public void saveState() {
     }
 }
