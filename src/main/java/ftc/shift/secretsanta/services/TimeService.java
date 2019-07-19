@@ -4,6 +4,7 @@ import ftc.shift.secretsanta.models.Group;
 import ftc.shift.secretsanta.repositories.GroupRepository;
 import ftc.shift.secretsanta.util.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -20,7 +21,7 @@ public class TimeService {
     private static String dateFormat = "dd.MM.yyyy";
 
     @Autowired
-    public TimeService(GroupRepository groupRepository, GameService gameService) {
+    public TimeService(@Qualifier("dataBaseGroupRepository") GroupRepository groupRepository, GameService gameService) {
         this.groupRepository = groupRepository;
         this.gameService = gameService;
         Timer timer = new Timer();

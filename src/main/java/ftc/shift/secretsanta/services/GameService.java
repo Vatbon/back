@@ -7,6 +7,7 @@ import ftc.shift.secretsanta.models.User;
 import ftc.shift.secretsanta.repositories.GameRepository;
 import ftc.shift.secretsanta.repositories.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class GameService {
     private final GroupRepository groupRepository;
 
     @Autowired
-    public GameService(GameRepository gameRepository, UserService userService, GroupRepository groupRepository) {
+    public GameService(GameRepository gameRepository, UserService userService, @Qualifier("dataBaseGroupRepository") GroupRepository groupRepository) {
         this.gameRepository = gameRepository;
         this.userService = userService;
         this.groupRepository = groupRepository;

@@ -6,4 +6,6 @@ public interface GameRepository {
     GameInfo createGame(GameInfo gameInfo);
 
     GameInfo fetchGame(String groupId);
+
+    GameInfo updateGame(GameInfo gameInfo);
 }

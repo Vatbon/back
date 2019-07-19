@@ -120,7 +120,7 @@ public class Group implements Cloneable {
         Collection<User> result = new ArrayList<>();
         synchronized (participants) {
             for (Participant participant : participants) {
-                result.add(participant.user);
+                result.add(participant.getUser());
             }
         }
         return result;
@@ -129,7 +129,7 @@ public class Group implements Cloneable {
     public void addParticipant(User user, String prefer) {
         synchronized (participants) {
             for (Participant participant : participants) {
-                if (participant.user.equals(user))
+                if (participant.getUser().equals(user))
                     return;
             }
             this.participants.add(new Participant(user, prefer, false, false));
@@ -142,7 +142,7 @@ public class Group implements Cloneable {
             Iterator<Participant> iterator = participants.iterator();
             while (iterator.hasNext()) {
                 Participant participant = iterator.next();
-                if (participant.user.equals(user)) {
+                if (participant.getUser().equals(user)) {
                     iterator.remove();
                     amount--;
                 }
@@ -155,8 +155,8 @@ public class Group implements Cloneable {
             Iterator<Participant> iterator = participants.iterator();
             while (iterator.hasNext()) {
                 Participant participant = iterator.next();
-                if (participant.user.equals(user)) {
-                    participant.received = true;
+                if (participant.getUser().equals(user)) {
+                    participant.setReceived(true);
                     return;
                 }
             }
@@ -224,8 +224,8 @@ public class Group implements Cloneable {
             Iterator<Participant> iterator = participants.iterator();
             while (iterator.hasNext()) {
                 Participant participant = iterator.next();
-                if (participant.user.getId().equals(userId))
-                    return participant.prefer;
+                if (participant.getUser().getId().equals(userId))
+                    return participant.getPrefer();
             }
         }
         return null;
@@ -236,8 +236,8 @@ public class Group implements Cloneable {
             Iterator<Participant> iterator = participants.iterator();
             while (iterator.hasNext()) {
                 Participant participant = iterator.next();
-                if (participant.user.getId().equals(userId))
-                    return participant.received;
+                if (participant.getUser().getId().equals(userId))
+                    return participant.isReceived();
             }
         }
         return false;
@@ -248,25 +248,19 @@ public class Group implements Cloneable {
             Iterator<Participant> iterator = participants.iterator();
             while (iterator.hasNext()) {
                 Participant participant = iterator.next();
-                if (participant.user.equals(user)) {
-                    participant.presented = true;
+                if (participant.getUser().equals(user)) {
+                    participant.setPresented(true);
                     return;
                 }
             }
         }
     }
 
-    private class Participant {
-        User user;
-        String prefer;
-        boolean received;
-        boolean presented;
-
-        Participant(User user, String prefer, boolean received, boolean presented) {
-            this.user = user;
-            this.prefer = prefer;
-            this.received = received;
-            this.presented = presented;
+    public void addParticipant(Participant participant) {
+        synchronized (participants) {
+            if (!participants.contains(participant))
+                participants.add(participant);
+            amount++;
         }
     }
 

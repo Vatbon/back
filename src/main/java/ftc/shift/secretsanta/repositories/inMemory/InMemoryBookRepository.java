@@ -1,7 +1,8 @@
-package ftc.shift.secretsanta.repositories;
+package ftc.shift.secretsanta.repositories.inMemory;
 
 import ftc.shift.secretsanta.exception.NotFoundException;
 import ftc.shift.secretsanta.models.Book;
+import ftc.shift.secretsanta.repositories.BookRepository;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Repository;
 

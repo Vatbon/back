@@ -1,8 +1,9 @@
-package ftc.shift.secretsanta.repositories;
+package ftc.shift.secretsanta.repositories.inMemory;
 
 import ftc.shift.secretsanta.exception.NotFoundException;
 import ftc.shift.secretsanta.models.Group;
 import ftc.shift.secretsanta.models.User;
+import ftc.shift.secretsanta.repositories.GroupRepository;
 import ftc.shift.secretsanta.services.UserService;
 import ftc.shift.secretsanta.util.IdFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,13 +55,8 @@ public class InMemoryGroupRepository implements GroupRepository {
     }
 
     @Override
-    public Group createGroup(String userId, Group group) {
+    public Group createGroup(Group group) {
         group.setId(String.valueOf(IdFactory.getNewId()));
-        group.setHost(userService.provideUser(userId));
-        group.setStarted(false);
-        group.setFinished(false);
-        group.setAmount(0);
-        group.getAllParticipants().clear();
         groupCache.put(group.getId(), group);
         return group;
     }

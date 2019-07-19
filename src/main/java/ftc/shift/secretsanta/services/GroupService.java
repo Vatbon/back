@@ -7,6 +7,7 @@ import ftc.shift.secretsanta.models.ResponsePreferEntity;
 import ftc.shift.secretsanta.models.User;
 import ftc.shift.secretsanta.repositories.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class GroupService {
     private final GameService gameService;
 
     @Autowired
-    public GroupService(GroupRepository groupRepository, UserService userService, TimeService timeService, GameService gameService) {
+    public GroupService(@Qualifier("dataBaseGroupRepository") GroupRepository groupRepository, UserService userService, TimeService timeService, GameService gameService) {
         this.groupRepository = groupRepository;
         this.userService = userService;
         this.timeService = timeService;
@@ -54,7 +55,12 @@ public class GroupService {
         }
         if (checkRules(group) == -1)
             return null;
-        Group result = groupRepository.createGroup(userId, group);
+        group.setHost(userService.provideUser(userId));
+        group.setStarted(false);
+        group.setFinished(false);
+        group.setAmount(0);
+        group.getAllParticipants().clear();
+        Group result = groupRepository.createGroup(group);
         User host = userService.provideUser(userId);
         result.addParticipant(host, "");
         host.addGroupAsParticipant(result.getId());

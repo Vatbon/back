@@ -1,6 +1,12 @@
-package ftc.shift.secretsanta.repositories;
+package ftc.shift.secretsanta.repositories.dataBase;
 
+import ftc.shift.secretsanta.models.Participant;
+import ftc.shift.secretsanta.models.ParticipantQueryEntity;
 import ftc.shift.secretsanta.models.User;
+import ftc.shift.secretsanta.repositories.UserRepository;
+import ftc.shift.secretsanta.repositories.dataBase.extractors.UserExtractor;
+import ftc.shift.secretsanta.repositories.dataBase.extractors.UserHostsExtractor;
+import ftc.shift.secretsanta.repositories.dataBase.extractors.UserParticipantsExtractor;
 import ftc.shift.secretsanta.util.IdFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -9,6 +15,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -22,7 +29,10 @@ public class DatabaseUserRepository implements UserRepository {
     private UserHostsExtractor userHostsExtractor;
 
     @Autowired
-    public DatabaseUserRepository(NamedParameterJdbcTemplate jdbcTemplate, UserExtractor userExtractor, UserParticipantsExtractor userParticipantsExtractor, UserHostsExtractor userHostsExtractor) {
+    public DatabaseUserRepository(NamedParameterJdbcTemplate jdbcTemplate,
+                                  UserExtractor userExtractor,
+                                  UserParticipantsExtractor userParticipantsExtractor,
+                                  UserHostsExtractor userHostsExtractor) {
         this.jdbcTemplate = jdbcTemplate;
         this.userExtractor = userExtractor;
         this.userParticipantsExtractor = userParticipantsExtractor;
@@ -72,7 +82,7 @@ public class DatabaseUserRepository implements UserRepository {
                 "from USERS " +
                 "where USER_ID=:userId;";
 
-        String sqlParts = "select USER_ID, GROUP_ID, PRESENTED, RECEIVED " +
+        String sqlParts = "select USER_ID, GROUP_ID, PRESENTED, RECEIVED, PREFER " +
                 "from USERS_PARTICIPANTS " +
                 "where USER_ID=:userId;";
 
@@ -89,7 +99,7 @@ public class DatabaseUserRepository implements UserRepository {
         /*Достаем все группы, где пользователь является участником*/
         MapSqlParameterSource paramsParts = new MapSqlParameterSource()
                 .addValue("userId", userId);
-        List<String> parts = jdbcTemplate.query(sqlParts, paramsParts, userParticipantsExtractor);
+        List<String> parts = getListOfGroupsFromParticipants(jdbcTemplate.query(sqlParts, paramsParts, userParticipantsExtractor));
 
         /*Достаем все группы, где пользователь является хозяином*/
         MapSqlParameterSource paramsHosts = new MapSqlParameterSource()
@@ -109,6 +119,16 @@ public class DatabaseUserRepository implements UserRepository {
             user.addGroupAsHost(host);
         }
         return user;
+    }
+
+    private List<String> getListOfGroupsFromParticipants(List<ParticipantQueryEntity> query) {
+        if (query == null)
+            return null;
+        List<String> result = new ArrayList<>();
+        for (ParticipantQueryEntity participant : query) {
+            result.add(participant.getGroupId());
+        }
+        return result;
     }
 
     @Override
@@ -187,7 +207,7 @@ public class DatabaseUserRepository implements UserRepository {
         /*Достаем все группы, где пользователь является участником*/
         MapSqlParameterSource paramsParts = new MapSqlParameterSource()
                 .addValue("userId", userId);
-        List<String> parts = jdbcTemplate.query(sqlParts, paramsParts, userParticipantsExtractor);
+        List<String> parts = getListOfGroupsFromParticipants(jdbcTemplate.query(sqlParts, paramsParts, userParticipantsExtractor));
 
         /*Достаем все группы, где пользователь является хозяином*/
         MapSqlParameterSource paramsHosts = new MapSqlParameterSource()

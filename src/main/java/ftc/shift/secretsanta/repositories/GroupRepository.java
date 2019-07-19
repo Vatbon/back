@@ -11,7 +11,7 @@ public interface GroupRepository {
 
     void deleteGroup(String groupId);
 
-    Group createGroup(String userId, Group group);
+    Group createGroup(Group group);
 
     Collection<Group> getAllGroups();
 

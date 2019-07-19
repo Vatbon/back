@@ -1,7 +1,8 @@
-package ftc.shift.secretsanta.repositories;
+package ftc.shift.secretsanta.repositories.inMemory;
 
 import ftc.shift.secretsanta.exception.NotFoundException;
 import ftc.shift.secretsanta.models.User;
+import ftc.shift.secretsanta.repositories.UserRepository;
 import ftc.shift.secretsanta.util.IdFactory;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,7 @@
-package ftc.shift.secretsanta.repositories;
+package ftc.shift.secretsanta.repositories.inMemory;
 
 import ftc.shift.secretsanta.models.GameInfo;
+import ftc.shift.secretsanta.repositories.GameRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -20,5 +21,11 @@ public class InMemoryGameRepository implements GameRepository {
     @Override
     public GameInfo fetchGame(String groupId) {
         return GameCache.get(groupId);
+    }
+
+    @Override
+    public GameInfo updateGame(GameInfo gameInfo) {
+        /*Заглушка*/
+        return GameCache.get(gameInfo.getGroup().getId());
     }
 }
