@@ -37,6 +37,6 @@ public class UserParticipantsExtractor implements ResultSetExtractor<List<Partic
                 result.put(userId, participant);
             }
         }
-        return (ArrayList<ParticipantQueryEntity>) result.values();
+        return new ArrayList<>(result.values());
     }
 }

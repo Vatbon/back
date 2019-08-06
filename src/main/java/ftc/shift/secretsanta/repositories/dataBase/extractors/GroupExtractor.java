@@ -42,6 +42,6 @@ public class GroupExtractor implements ResultSetExtractor<List<Group>> {
                 result.put(groupId, group);
             }
         }
-        return (ArrayList<Group>) result.values();
+        return new ArrayList<>(result.values());
     }
 }

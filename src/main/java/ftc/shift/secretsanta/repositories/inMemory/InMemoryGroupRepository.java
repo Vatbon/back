@@ -67,21 +67,6 @@ public class InMemoryGroupRepository implements GroupRepository {
     }
 
     @Override
-    public Collection<Group> getUsersGroups(String userId) {
-        Collection<Group> groups = groupCache.values();
-        Collection<Group> result = new ArrayList<>();
-        User user = userService.provideUser(userId);
-
-        synchronized (groups) {
-            for (Group group : groups) {
-                if (group.getAllParticipants().contains(user) || group.getHost().equals(user))
-                    result.add(group);
-            }
-        }
-        return result;
-    }
-
-    @Override
     public void _startGroup(String groupId) {
         if (!groupCache.containsKey(groupId)) {
             throw new NotFoundException();

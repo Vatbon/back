@@ -96,12 +96,27 @@ public class GroupService {
     public Group updateGroup(String userId, String groupId, Group group) {
         if (!userService.isRegistered(userId))
             return null;
-        if (group.getTitle().length() < 3 || group.getTitle().length() > 50)
+        Group old = groupRepository.fetchGroup(groupId);
+        if (old == null)
             return null;
-        if (group.getTitle() == null)
+        if (!userId.equals(old.getHost().getId()))
             return null;
-        if (!userId.equals(groupRepository.fetchGroup(groupId).getHost().getId()))
+        if (checkRules(group) == -1)
             return null;
+
+        if (old.getAmountLimit() != group.getAmountLimit())
+            return null;
+        if (old.getMaxValue() != group.getMaxValue())
+            return null;
+        if (old.getMinValue() != group.getMinValue())
+            return null;
+        if (!old.getStartTime().equals(group.getMethod()))
+            return null;
+        if (!old.getStartTime().equals(group.getStartTime()))
+            return null;
+        if (!old.getEndTime().equals(group.getEndTime()))
+            return null;
+
         return groupRepository.updateGroup(groupId, group);
     }
 
@@ -112,12 +127,6 @@ public class GroupService {
             return -1;
         groupRepository.deleteGroup(groupId);
         return 0;
-    }
-
-    public Collection<Group> provideUsersGroups(String userId) {
-        if (!userService.isRegistered(userId))
-            return null;
-        return groupRepository.getUsersGroups(userId);
     }
 
     public int joinGroup(String groupId, String userId, String prefer) {

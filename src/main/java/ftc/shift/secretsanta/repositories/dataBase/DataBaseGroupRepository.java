@@ -127,7 +127,47 @@ public class DataBaseGroupRepository implements GroupRepository {
 
     @Override
     public Group updateGroup(String groupId, Group group) {
-        return null;
+
+        String sqlGroupFind = "select * from GROUPS " +
+                "where GROUP_ID=:groupId;";
+
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("groupId", groupId);
+
+        List<Group> groups = jdbcTemplate.query(sqlGroupFind, params, groupExtractor);
+        if (groups.isEmpty())
+            return null;
+
+        String sqlGroup = "update GROUPS " +
+                "set TITLE=:title," +
+                "START_TIME=:startTime," +
+                "END_TIME=:endTime," +
+                "STARTED=:started," +
+                "FINISHED=:finished," +
+                "AMOUNT_LIMIT=:amountLimit," +
+                "AMOUNT=:amount," +
+                "MIN_VALUE=:minValue," +
+                "MAX_VALUE=:maxValue," +
+                "METHOD=:method," +
+                "HOST_ID=:hostId" +
+                "where GROUP_ID=:groupId;";
+
+        MapSqlParameterSource param = new MapSqlParameterSource()
+                .addValue("groupId", group.getId())
+                .addValue("title", group.getTitle())
+                .addValue("startTime", group.getStartTime())
+                .addValue("endTime", group.getEndTime())
+                .addValue("started", group.isStarted())
+                .addValue("finished", group.isFinished())
+                .addValue("amountLimit", group.getAmountLimit())
+                .addValue("amount", group.getAmount())
+                .addValue("minValue", group.getMinValue())
+                .addValue("maxValue", group.getMaxValue())
+                .addValue("method", group.getMethod())
+                .addValue("hostId", group.getHost().getId());
+
+        jdbcTemplate.update(sqlGroup, param);
+        return group;
     }
 
     @Override
@@ -145,7 +185,7 @@ public class DataBaseGroupRepository implements GroupRepository {
 
         String sqlGroup = "insert into GROUPS " +
                 "values(:groupId, :title, :startTime, :endTime, :started, :finished, :amountLimit, " +
-                ":amount, ;minValue, :maxValue, :method, :hostId)";
+                ":amount, :minValue, :maxValue, :method, :hostId)";
 
         MapSqlParameterSource param = new MapSqlParameterSource()
                 .addValue("groupId", group.getId())
@@ -162,8 +202,11 @@ public class DataBaseGroupRepository implements GroupRepository {
                 .addValue("hostId", group.getHost().getId());
 
         jdbcTemplate.update(sqlGroup, param);
+        /*
 
-        /*Закидываем нового хозяина в таблицу хозяинов*/
+         */
+        /*Закидываем нового хозяина в таблицу хозяинов*//*
+
 
         String sqlHost = "insert into USERS_HOSTS " +
                 "values(:userId, :groupId);";
@@ -173,7 +216,9 @@ public class DataBaseGroupRepository implements GroupRepository {
                 .addValue("groupId", group.getId());
 
         jdbcTemplate.update(sqlHost, param1);
-        /*Закидываем нового участника в таблицу участников*/
+        */
+        /*Закидываем нового участника в таблицу участников*//*
+
 
         String sqlPart = "insert into USERS_PARTICIPANTS(USER_ID, GROUP_ID) " +
                 "values(:userId, :groupId);";
@@ -184,6 +229,7 @@ public class DataBaseGroupRepository implements GroupRepository {
 
         jdbcTemplate.update(sqlPart, param2);
 
+*/
         return group;
     }
 
@@ -201,7 +247,7 @@ public class DataBaseGroupRepository implements GroupRepository {
             String groupId = group.getId();
             /*Достаем тело хозяина группы*/
             String sqlHost = "select USER_ID, NAME " +
-                    "from USERS" +
+                    "from USERS " +
                     "where USER_ID=:userId;";
 
             MapSqlParameterSource hostParams = new MapSqlParameterSource()
@@ -216,7 +262,7 @@ public class DataBaseGroupRepository implements GroupRepository {
             group.getAllParticipants().clear();
 
             String sqlParts = "select * " +
-                    "from USERS_PARTICIPANTS" +
+                    "from USERS_PARTICIPANTS " +
                     "where GROUP_ID=:groupId;";
 
             MapSqlParameterSource partsParams = new MapSqlParameterSource()
@@ -253,17 +299,26 @@ public class DataBaseGroupRepository implements GroupRepository {
     }
 
     @Override
-    public Collection<Group> getUsersGroups(String userId) {
-        return null;
-    }
-
-    @Override
     public void _startGroup(String groupId) {
+        String sqlStartGroup = "update GROUPS " +
+                "set STARTED=:TRUE " +
+                "where GROUP_ID=:groupId;";
 
+        MapSqlParameterSource param = new MapSqlParameterSource()
+                .addValue("groupId", groupId);
+
+        jdbcTemplate.update(sqlStartGroup, param);
     }
 
     @Override
     public void _finishGroup(String groupId) {
+        String sqlFinishGroup = "update GROUPS " +
+                "set FINISHED=:TRUE " +
+                "where GROUP_ID=:groupId;";
 
+        MapSqlParameterSource param = new MapSqlParameterSource()
+                .addValue("groupId", groupId);
+
+        jdbcTemplate.update(sqlFinishGroup, param);
     }
 }

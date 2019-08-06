@@ -50,10 +50,10 @@ public class DatabaseUserRepository implements UserRepository {
                 ");";
 
         String createGroupPartTableSql = "create table USERS_PARTICIPANTS(" +
-                "USER_ID  VARCHAR(64)," +
-                "GROUP_ID VARCHAR(64)," +
-                "PREFER VARCHAR(250)," +
-                "RECEIVED BOOLEAN," +
+                "USER_ID   VARCHAR(64)," +
+                "GROUP_ID  VARCHAR(64)," +
+                "PREFER    VARCHAR(250)," +
+                "RECEIVED  BOOLEAN," +
                 "PRESENTED BOOLEAN" +
                 ");";
 
@@ -145,7 +145,8 @@ public class DatabaseUserRepository implements UserRepository {
 
         /*Закидываем группы, где пользователь участник*/
         for (String s : user.getGroupsAsParticipant()) {
-            String insertUserSql = "insert into USERS_PARTICIPANTS (USER_ID, GROUP_ID) values (:userId, :groupId)";
+            String insertUserSql = "insert into USERS_PARTICIPANTS (USER_ID, GROUP_ID) " +
+                    "values (:userId, :groupId)";
             bookParams = new MapSqlParameterSource()
                     .addValue("userId", userId)
                     .addValue("groupId", s);
@@ -154,7 +155,8 @@ public class DatabaseUserRepository implements UserRepository {
 
         /*Закидываем группы, где пользователь хозяин*/
         for (String s : user.getGroupsAsHost()) {
-            String insertUserSql = "insert into USERS_HOSTS (USER_ID, GROUP_ID) values (:userId, :groupId)";
+            String insertUserSql = "insert into USERS_HOSTS (USER_ID, GROUP_ID) " +
+                    "values (:userId, :groupId)";
             bookParams = new MapSqlParameterSource()
                     .addValue("userId", userId)
                     .addValue("groupId", s);
@@ -196,22 +198,25 @@ public class DatabaseUserRepository implements UserRepository {
 
         String userId = user.getId();
 
-        String sqlParts = "select USER_ID, GROUP_ID, PRESENTED, RECEIVED " +
+
+        /*Достаем все группы, где пользователь является участником*/
+        String sqlParts = "select USER_ID, GROUP_ID, PRESENTED, RECEIVED, PREFER " +
                 "from USERS_PARTICIPANTS " +
                 "where USER_ID=:userId;";
 
+        MapSqlParameterSource paramsParts = new MapSqlParameterSource()
+                .addValue("userId", userId);
+
+        List<String> parts = getListOfGroupsFromParticipants(jdbcTemplate.query(sqlParts, paramsParts, userParticipantsExtractor));
+
+        /*Достаем все группы, где пользователь является хозяином*/
         String sqlHosts = "select USER_ID, GROUP_ID " +
                 "from USERS_PARTICIPANTS " +
                 "where USER_ID=:userId;";
 
-        /*Достаем все группы, где пользователь является участником*/
-        MapSqlParameterSource paramsParts = new MapSqlParameterSource()
-                .addValue("userId", userId);
-        List<String> parts = getListOfGroupsFromParticipants(jdbcTemplate.query(sqlParts, paramsParts, userParticipantsExtractor));
-
-        /*Достаем все группы, где пользователь является хозяином*/
         MapSqlParameterSource paramsHosts = new MapSqlParameterSource()
                 .addValue("userId", userId);
+
         List<String> hosts = jdbcTemplate.query(sqlHosts, paramsHosts, userHostsExtractor);
 
 
@@ -241,6 +246,11 @@ public class DatabaseUserRepository implements UserRepository {
         jdbcTemplate.update(sqlUser, userParams);
 
         /*Обновляем группы, в которых пользователь является участником*/
+
+        String sqlPartsDelete = "delete from USERS_PARTICIPANTS where USER_ID=:userId;";
+        MapSqlParameterSource partsDelParams = new MapSqlParameterSource().addValue("userId", user.getId());
+        jdbcTemplate.update(sqlPartsDelete, partsDelParams);
+
         String sqlParts = "insert into USERS_PARTICIPANTS(USER_ID, GROUP_ID) values (:userId, :groupId);";
 
         for (String s : user.getGroupsAsParticipant()) {
@@ -251,12 +261,16 @@ public class DatabaseUserRepository implements UserRepository {
         }
 
         /*Обновляем группы, в которых пользователь является хозяином*/
-        String sqlHosts = "insert into USERS_HOSTS(USER_ID, GROUP_ID) values (:userId, :groupId);";
 
+        String sqlHostsDelete = "delete from USERS_HOSTS where USER_ID=:userId;";
+        MapSqlParameterSource hostsDelParams = new MapSqlParameterSource().addValue("userId", user.getId());
+        jdbcTemplate.update(sqlHostsDelete, hostsDelParams);
+
+        String sqlHosts = "insert into USERS_HOSTS(USER_ID, GROUP_ID) values (:userId, :groupId);";
         for (String s : user.getGroupsAsHost()) {
             MapSqlParameterSource hostsParams = new MapSqlParameterSource()
-                    .addValue("userId", user.getId())
-                    .addValue("groupId", s);
+                    .addValue("groupId", s)
+                    .addValue("userId", user.getId());
             jdbcTemplate.update(sqlHosts, hostsParams);
         }
         return user;

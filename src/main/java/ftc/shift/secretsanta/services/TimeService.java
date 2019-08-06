@@ -36,6 +36,8 @@ public class TimeService {
     private void checkTime() {
         Date now = new Date();
         Collection<Group> groups = groupRepository.getAllGroups();
+        if (groups == null)
+            return;
         synchronized (groups) {
             for (Group group : groups) {
                 Date startTimeDate = null;
