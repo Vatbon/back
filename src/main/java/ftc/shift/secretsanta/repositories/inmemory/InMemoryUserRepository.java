@@ -1,4 +1,4 @@
-package ftc.shift.secretsanta.repositories.inMemory;
+package ftc.shift.secretsanta.repositories.inmemory;
 
 import ftc.shift.secretsanta.exception.NotFoundException;
 import ftc.shift.secretsanta.models.User;

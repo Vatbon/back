@@ -7,5 +7,5 @@ public interface GameRepository {
 
     GameInfo fetchGame(String groupId);
 
-    GameInfo updateGame(GameInfo gameInfo);
+    //GameInfo updateGame(GameInfo gameInfo);
 }

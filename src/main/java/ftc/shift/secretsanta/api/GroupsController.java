@@ -93,10 +93,10 @@ public class GroupsController {
             @ApiParam(value = "Тело ApiCreationGroupEntity запроса")
             @RequestBody ApiCreationGroupEntity creationGroupEntity) {
         Group result = service.createGroup(userId, creationGroupEntity.getGroup());
-        service.changePrefer(result.getId(), userId, creationGroupEntity.getPrefer().getPrefer());
-        Logger.log("POST " + GROUPS_PATH_V2 + " userId = " + userId + " groupName = " + creationGroupEntity.getGroup().getTitle());
         if (result == null)
             return ResponseEntity.badRequest().build();
+        service.changePrefer(result.getId(), userId, creationGroupEntity.getPrefer().getPrefer());
+        Logger.log("POST " + GROUPS_PATH_V2 + " userId = " + userId + " groupName = " + creationGroupEntity.getGroup().getTitle());
         creationGroupEntity.setGroup(result);
         return ResponseEntity.ok(creationGroupEntity);
     }

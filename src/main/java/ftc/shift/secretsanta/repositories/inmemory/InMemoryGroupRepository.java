@@ -1,15 +1,12 @@
-package ftc.shift.secretsanta.repositories.inMemory;
+package ftc.shift.secretsanta.repositories.inmemory;
 
 import ftc.shift.secretsanta.exception.NotFoundException;
 import ftc.shift.secretsanta.models.Group;
-import ftc.shift.secretsanta.models.User;
 import ftc.shift.secretsanta.repositories.GroupRepository;
-import ftc.shift.secretsanta.services.UserService;
 import ftc.shift.secretsanta.util.IdFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,11 +15,9 @@ import java.util.Map;
 public class InMemoryGroupRepository implements GroupRepository {
 
     private Map<String, Group> groupCache = new HashMap<>();
-    private final UserService userService;
-
+    
     @Autowired
-    public InMemoryGroupRepository(UserService userService) {
-        this.userService = userService;
+    public InMemoryGroupRepository() {
     }
 
     @Override

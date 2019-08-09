@@ -1,12 +1,11 @@
-package ftc.shift.secretsanta.repositories.dataBase;
+package ftc.shift.secretsanta.repositories.database;
 
-import ftc.shift.secretsanta.models.Participant;
 import ftc.shift.secretsanta.models.ParticipantQueryEntity;
 import ftc.shift.secretsanta.models.User;
 import ftc.shift.secretsanta.repositories.UserRepository;
-import ftc.shift.secretsanta.repositories.dataBase.extractors.UserExtractor;
-import ftc.shift.secretsanta.repositories.dataBase.extractors.UserHostsExtractor;
-import ftc.shift.secretsanta.repositories.dataBase.extractors.UserParticipantsExtractor;
+import ftc.shift.secretsanta.repositories.database.extractors.UserExtractor;
+import ftc.shift.secretsanta.repositories.database.extractors.UserHostsExtractor;
+import ftc.shift.secretsanta.repositories.database.extractors.UserParticipantsExtractor;
 import ftc.shift.secretsanta.util.IdFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -176,7 +175,6 @@ public class DatabaseUserRepository implements UserRepository {
                 .addValue("name", name);
 
         List<User> users = jdbcTemplate.query(sql, params, userExtractor);
-        System.out.println(!users.isEmpty());
         return !users.isEmpty();
     }
 
@@ -211,7 +209,7 @@ public class DatabaseUserRepository implements UserRepository {
 
         /*Достаем все группы, где пользователь является хозяином*/
         String sqlHosts = "select USER_ID, GROUP_ID " +
-                "from USERS_PARTICIPANTS " +
+                "from USERS_HOSTS " +
                 "where USER_ID=:userId;";
 
         MapSqlParameterSource paramsHosts = new MapSqlParameterSource()
@@ -245,7 +243,7 @@ public class DatabaseUserRepository implements UserRepository {
                 .addValue("name", user.getName());
         jdbcTemplate.update(sqlUser, userParams);
 
-        /*Обновляем группы, в которых пользователь является участником*/
+        /*Обновляем группы, в которых пользователь является участником/
 
         String sqlPartsDelete = "delete from USERS_PARTICIPANTS where USER_ID=:userId;";
         MapSqlParameterSource partsDelParams = new MapSqlParameterSource().addValue("userId", user.getId());
@@ -258,7 +256,7 @@ public class DatabaseUserRepository implements UserRepository {
                     .addValue("userId", user.getId())
                     .addValue("groupId", s);
             jdbcTemplate.update(sqlParts, partsParams);
-        }
+        }*/
 
         /*Обновляем группы, в которых пользователь является хозяином*/
 

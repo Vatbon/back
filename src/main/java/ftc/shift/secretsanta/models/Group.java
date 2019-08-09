@@ -129,7 +129,7 @@ public class Group implements Cloneable {
     public void addParticipant(User user, String prefer) {
         synchronized (participants) {
             for (Participant participant : participants) {
-                if (participant.getUser().equals(user))
+                if (participant.getUser().getId().equals(user.getId()))
                     return;
             }
             this.participants.add(new Participant(user, prefer, false, false));
@@ -142,9 +142,10 @@ public class Group implements Cloneable {
             Iterator<Participant> iterator = participants.iterator();
             while (iterator.hasNext()) {
                 Participant participant = iterator.next();
-                if (participant.getUser().equals(user)) {
-                    iterator.remove();
+                if (participant.getUser().getId().equals(user.getId())) {
+                    participants.remove(participant);
                     amount--;
+                    break;
                 }
             }
         }
@@ -155,7 +156,7 @@ public class Group implements Cloneable {
             Iterator<Participant> iterator = participants.iterator();
             while (iterator.hasNext()) {
                 Participant participant = iterator.next();
-                if (participant.getUser().equals(user)) {
+                if (participant.getUser().getId().equals(user.getId())) {
                     participant.setReceived(true);
                     return;
                 }
@@ -248,7 +249,7 @@ public class Group implements Cloneable {
             Iterator<Participant> iterator = participants.iterator();
             while (iterator.hasNext()) {
                 Participant participant = iterator.next();
-                if (participant.getUser().equals(user)) {
+                if (participant.getUser().getId().equals(user.getId())) {
                     participant.setPresented(true);
                     return;
                 }
@@ -271,5 +272,22 @@ public class Group implements Cloneable {
                 this.minValue, this.maxValue, this.method, this.host, this.started, this.finished);
         //implement cloning participants?
         return clone;
+    }
+
+    public boolean hasParticipantById(String userId) {
+        synchronized (participants) {
+            Iterator<Participant> iterator = participants.iterator();
+            while (iterator.hasNext()) {
+                Participant participant = iterator.next();
+                if (participant.getUser().getId().equals(userId)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public Collection<Participant> _getParticipants() {
+        return participants;
     }
 }

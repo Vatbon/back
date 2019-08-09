@@ -1,4 +1,4 @@
-package ftc.shift.secretsanta.repositories.dataBase.extractors;
+package ftc.shift.secretsanta.repositories.database.extractors;
 
 import ftc.shift.secretsanta.models.User;
 import org.springframework.dao.DataAccessException;

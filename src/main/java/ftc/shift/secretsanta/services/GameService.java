@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Map;
 
 @Service
 public class GameService {
@@ -21,7 +22,8 @@ public class GameService {
     private final GroupRepository groupRepository;
 
     @Autowired
-    public GameService(GameRepository gameRepository, UserService userService, @Qualifier("dataBaseGroupRepository") GroupRepository groupRepository) {
+    public GameService(@Qualifier("databaseGameRepository") GameRepository gameRepository, UserService userService,
+            @Qualifier("dataBaseGroupRepository") GroupRepository groupRepository) {
         this.gameRepository = gameRepository;
         this.userService = userService;
         this.groupRepository = groupRepository;
@@ -60,13 +62,19 @@ public class GameService {
         gameRepository.createGame(gameInfo);
     }
 
-
     public ResponsePreferEntity getGiftInfo(String groupId, String userId) {
         GameInfo gameInfo = gameRepository.fetchGame(groupId);
 
-        User receiver = gameInfo.getLinks().get(userService.provideUser(userId));
-        String prefer = gameInfo.getGroup().getPrefer(receiver.getId());
-        boolean received = gameInfo.getGroup().isReceived(receiver.getId());
+        User receiver = null;
+        for (Map.Entry<User, User> entry : gameInfo.getLinks().entrySet()) {
+            if (entry.getKey().getId().equals(userId)) {
+                receiver = entry.getValue();
+                break;
+            }
+        }
+        Group group = gameInfo.getGroup();
+        String prefer = group.getPrefer(receiver.getId());
+        boolean received = group.isReceived(receiver.getId());
 
         return new ResponsePreferEntity(receiver, prefer, received);
     }

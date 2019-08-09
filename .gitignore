@@ -1,5 +1,9 @@
-.idea/
-.gradle/
-out/
-build/
 *.swp
+.idea/
+.vscode/
+.gradle/
+build/
+bin/
+out/
+.project
+.classpath

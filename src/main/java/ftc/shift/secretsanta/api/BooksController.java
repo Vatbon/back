@@ -1,4 +1,4 @@
-package ftc.shift.sample.api;
+package ftc.shift.secretsanta.api;
 
 
 import ftc.shift.secretsanta.models.Book;

@@ -66,8 +66,9 @@ public class GroupService {
         host.addGroupAsParticipant(result.getId());
         host.addGroupAsHost(result.getId());
         userService.updateUser(host);
+        groupRepository.updateGroup(result.getId(), result);
+        group._getParticipants();
         return result;
-
     }
 
     private int checkRules(Group group) {
@@ -135,7 +136,7 @@ public class GroupService {
         Group group = groupRepository.fetchGroup(groupId);
         if (group.getAmount() + 1 > group.getAmountLimit() & group.getAmountLimit() != 0)
             return -1;
-        if (group.getAllParticipants().contains(userService.provideUser(userId)))
+        if (group.hasParticipantById(userService.provideUser(userId).getId()))
             return -1;
         if (prefer == null)
             return -1;
@@ -156,7 +157,7 @@ public class GroupService {
             return -1;
         Group group = groupRepository.fetchGroup(groupId);
         User user = userService.provideUser(userId);
-        if (!group.getAllParticipants().contains(user))
+        if (!group.hasParticipantById(user.getId()))
             return -1;
         group.deleteParticipant(user);
         group.addParticipant(user, prefer);
@@ -169,7 +170,7 @@ public class GroupService {
             return -1;
         Group group = groupRepository.fetchGroup(groupId);
         User user = userService.provideUser(userId);
-        if (!group.getAllParticipants().contains(user))
+        if (!group.hasParticipantById(user.getId()))
             return -1;
         group.receiveGift(user);
         groupRepository.updateGroup(groupId, group);
@@ -183,7 +184,7 @@ public class GroupService {
         User user = userService.provideUser(userId);
         if (group.isStarted())
             return -1;
-        if (!group.getAllParticipants().contains(user))
+        if (!group.hasParticipantById(user.getId()))
             return -1;
         group.deleteParticipant(user);
         user.deleteGroupAsParticipant(groupId);
@@ -197,7 +198,7 @@ public class GroupService {
             return null;
         Group group = groupRepository.fetchGroup(groupId);
         User user = userService.provideUser(userId);
-        if (!group.getAllParticipants().contains(user))
+        if (!group.hasParticipantById(user.getId()))
             return null;
         if (!group.isStarted() || group.isFinished())
             return null;
@@ -210,7 +211,7 @@ public class GroupService {
             return -1;
         Group group = groupRepository.fetchGroup(groupId);
         User user = userService.provideUser(userId);
-        if (!group.getAllParticipants().contains(user))
+        if (!group.hasParticipantById(user.getId()))
             return -1;
         group.presentGift(user);
         groupRepository.updateGroup(groupId, group);
@@ -226,7 +227,7 @@ public class GroupService {
             return null;
         Group group = groupRepository.fetchGroup(groupId);
         User user = userService.provideUser(userId);
-        if (!group.getAllParticipants().contains(user))
+        if (!group.hasParticipantById(user.getId()))
             return null;
         return new Prefer(group.getPrefer(userId));
     }

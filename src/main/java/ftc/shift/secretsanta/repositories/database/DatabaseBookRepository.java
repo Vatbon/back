@@ -1,8 +1,8 @@
-package ftc.shift.secretsanta.repositories.dataBase;
+package ftc.shift.secretsanta.repositories.database;
 
 import ftc.shift.secretsanta.models.Book;
 import ftc.shift.secretsanta.repositories.BookRepository;
-import ftc.shift.secretsanta.repositories.dataBase.extractors.BookExtractor;
+import ftc.shift.secretsanta.repositories.database.extractors.BookExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

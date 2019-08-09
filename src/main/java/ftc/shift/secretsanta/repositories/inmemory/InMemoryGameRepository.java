@@ -1,4 +1,4 @@
-package ftc.shift.secretsanta.repositories.inMemory;
+package ftc.shift.secretsanta.repositories.inmemory;
 
 import ftc.shift.secretsanta.models.GameInfo;
 import ftc.shift.secretsanta.repositories.GameRepository;
@@ -23,9 +23,4 @@ public class InMemoryGameRepository implements GameRepository {
         return GameCache.get(groupId);
     }
 
-    @Override
-    public GameInfo updateGame(GameInfo gameInfo) {
-        /*Заглушка*/
-        return GameCache.get(gameInfo.getGroup().getId());
-    }
 }

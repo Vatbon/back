@@ -1,15 +1,17 @@
-package ftc.shift.secretsanta.repositories.dataBase;
+package ftc.shift.secretsanta.repositories.database;
 
 import ftc.shift.secretsanta.models.Group;
 import ftc.shift.secretsanta.models.Participant;
 import ftc.shift.secretsanta.models.ParticipantQueryEntity;
 import ftc.shift.secretsanta.models.User;
 import ftc.shift.secretsanta.repositories.GroupRepository;
-import ftc.shift.secretsanta.repositories.dataBase.extractors.GroupExtractor;
-import ftc.shift.secretsanta.repositories.dataBase.extractors.UserExtractor;
-import ftc.shift.secretsanta.repositories.dataBase.extractors.UserParticipantsExtractor;
+import ftc.shift.secretsanta.repositories.UserRepository;
+import ftc.shift.secretsanta.repositories.database.extractors.GroupExtractor;
+import ftc.shift.secretsanta.repositories.database.extractors.UserExtractor;
+import ftc.shift.secretsanta.repositories.database.extractors.UserParticipantsExtractor;
 import ftc.shift.secretsanta.util.IdFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -27,16 +29,19 @@ public class DataBaseGroupRepository implements GroupRepository {
     private final GroupExtractor groupExtractor;
     private final UserExtractor userExtractor;
     private final UserParticipantsExtractor userParticipantsExtractor;
+    private final UserRepository userRepository;
 
     @Autowired
     public DataBaseGroupRepository(NamedParameterJdbcTemplate jdbcTemplate,
                                    GroupExtractor groupExtractor,
                                    UserExtractor userExtractor,
-                                   UserParticipantsExtractor userParticipantsExtractor) {
+                                   UserParticipantsExtractor userParticipantsExtractor,
+                                   @Qualifier("databaseUserRepository") UserRepository userRepository) {
         this.jdbcTemplate = jdbcTemplate;
         this.groupExtractor = groupExtractor;
         this.userExtractor = userExtractor;
         this.userParticipantsExtractor = userParticipantsExtractor;
+        this.userRepository = userRepository;
     }
 
     @PostConstruct
@@ -71,9 +76,10 @@ public class DataBaseGroupRepository implements GroupRepository {
         if (groups.isEmpty())
             return null;
         Group group = groups.get(0);
+
         /*Достаем тело хозяина группы*/
         String sqlHost = "select USER_ID, NAME " +
-                "from USERS" +
+                "from USERS " +
                 "where USER_ID=:userId;";
 
         MapSqlParameterSource hostParams = new MapSqlParameterSource()
@@ -91,7 +97,7 @@ public class DataBaseGroupRepository implements GroupRepository {
         group.getAllParticipants().clear();
 
         String sqlParts = "select * " +
-                "from USERS_PARTICIPANTS" +
+                "from USERS_PARTICIPANTS " +
                 "where GROUP_ID=:groupId;";
 
         MapSqlParameterSource partsParams = new MapSqlParameterSource()
@@ -117,7 +123,7 @@ public class DataBaseGroupRepository implements GroupRepository {
         for (User user : userList) {
             userMap.put(user.getId(), user);
         }
-
+        group.setAmount(0);
         for (Participant participant : participants) {
             participant.setUser(userMap.get(participant.getUser().getId()));
             group.addParticipant(participant);
@@ -149,7 +155,7 @@ public class DataBaseGroupRepository implements GroupRepository {
                 "MIN_VALUE=:minValue," +
                 "MAX_VALUE=:maxValue," +
                 "METHOD=:method," +
-                "HOST_ID=:hostId" +
+                "HOST_ID=:hostId " +
                 "where GROUP_ID=:groupId;";
 
         MapSqlParameterSource param = new MapSqlParameterSource()
@@ -167,6 +173,31 @@ public class DataBaseGroupRepository implements GroupRepository {
                 .addValue("hostId", group.getHost().getId());
 
         jdbcTemplate.update(sqlGroup, param);
+
+        String sqlHostDelete = "delete from USERS_HOSTS where GROUP_ID=:groupId;";
+        String sqlHost = "insert into USERS_HOSTS values(:userId, :groupId);";
+        String sqlPartDelete = "delete from USERS_PARTICIPANTS where GROUP_ID=:groupId ;";
+        String sqlPart = "insert into USERS_PARTICIPANTS values(:userId, :groupId, :prefer, :presented, :received);";
+
+        jdbcTemplate.update(sqlHostDelete, new MapSqlParameterSource()
+                .addValue("groupId", groupId));
+
+        jdbcTemplate.update(sqlHost, new MapSqlParameterSource()
+                .addValue("userId", group.getHost().getId())
+                .addValue("groupId", groupId));
+
+        jdbcTemplate.update(sqlPartDelete, new MapSqlParameterSource()
+                .addValue("groupId", groupId));
+
+        for (Participant participant : group._getParticipants()) {
+            jdbcTemplate.update(sqlPart, new MapSqlParameterSource()
+                    .addValue("userId", participant.getUser().getId())
+                    .addValue("groupId", groupId)
+                    .addValue("presented", participant.isPresented())
+                    .addValue("received", participant.isReceived())
+                    .addValue("prefer", participant.getPrefer()));
+        }
+
         return group;
     }
 
@@ -235,16 +266,14 @@ public class DataBaseGroupRepository implements GroupRepository {
 
     @Override
     public Collection<Group> getAllGroups() {
-
         String sqlGroup = "select * " +
                 "from GROUPS ";
 
         List<Group> groups = jdbcTemplate.query(sqlGroup, new MapSqlParameterSource(), groupExtractor);
-        if (groups.isEmpty())
-            return null;
+
         for (Group group : groups) {
-            User host;
             String groupId = group.getId();
+
             /*Достаем тело хозяина группы*/
             String sqlHost = "select USER_ID, NAME " +
                     "from USERS " +
@@ -257,6 +286,8 @@ public class DataBaseGroupRepository implements GroupRepository {
 
             if (users.isEmpty())
                 return null;
+
+            group.setHost(userRepository.getUser(users.get(0).getId()));
 
             /*Достаем тело всех участников группы*/
             group.getAllParticipants().clear();
@@ -274,6 +305,13 @@ public class DataBaseGroupRepository implements GroupRepository {
                 return null;
 
             /*Заполняем поле user в каждом participant*/
+
+            for (ParticipantQueryEntity participant : participants) {
+                group.addParticipant(userRepository.getUser(participant.getUser().getId()), participant.getPrefer());
+            }
+
+
+            /*
             String sqlUsers = "select USERS.USER_ID as USER_ID, USERS.NAME as NAME " +
                     "from USERS, USERS_PARTICIPANTS " +
                     "where USERS.USER_ID=USERS_PARTICIPANTS.USER_ID and USERS_PARTICIPANTS.GROUP_ID=:groupId;";
@@ -292,16 +330,16 @@ public class DataBaseGroupRepository implements GroupRepository {
             for (Participant participant : participants) {
                 participant.setUser(userMap.get(participant.getUser().getId()));
                 group.addParticipant(participant);
-            }
+            }*/
 
         }
-        return null;
+        return groups;
     }
 
     @Override
     public void _startGroup(String groupId) {
         String sqlStartGroup = "update GROUPS " +
-                "set STARTED=:TRUE " +
+                "set STARTED=TRUE " +
                 "where GROUP_ID=:groupId;";
 
         MapSqlParameterSource param = new MapSqlParameterSource()
@@ -313,7 +351,7 @@ public class DataBaseGroupRepository implements GroupRepository {
     @Override
     public void _finishGroup(String groupId) {
         String sqlFinishGroup = "update GROUPS " +
-                "set FINISHED=:TRUE " +
+                "set FINISHED=TRUE " +
                 "where GROUP_ID=:groupId;";
 
         MapSqlParameterSource param = new MapSqlParameterSource()
