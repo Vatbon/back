@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.Console;
+
 @RestController
 @Api(description = "API для получения пользователя с расширенной информацией")
 public class UserController {
@@ -26,7 +28,7 @@ public class UserController {
     public ResponseEntity<User> getUser(
             @ApiParam(value = "Уникальный идентификатор пользателя")
             @RequestHeader("userId") String userId) {
-        Logger.log("GET " + USER_PATH_V2 + " userId = " + userId);
+        Logger.log(Logger.BLUE_BOLD + "GET " + Logger.RESET + USER_PATH_V2 + " userId = " + userId);
         User result = service.provideUser(userId);
         if (result == null)
             return ResponseEntity.badRequest().build();

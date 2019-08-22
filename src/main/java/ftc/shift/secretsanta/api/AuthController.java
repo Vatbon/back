@@ -31,8 +31,8 @@ public class AuthController {
             @ApiParam(value = "Имя пользователя")
             @PathVariable("name") String name
     ) {
+        Logger.log(Logger.BLUE_BOLD + "GET " + Logger.RESET + AUTH_PATH_V1 + "/" + name);
         User result = authService.authUser(new User("", name));
-        Logger.log("GET " + AUTH_PATH_V1 + "/" + name);
         if (result == null)
             return ResponseEntity.badRequest().build();
 
