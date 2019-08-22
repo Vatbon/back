@@ -108,6 +108,7 @@ public class GroupsController {
             @RequestHeader("userId") String userId,
             @ApiParam(value = "Уникальный идентификатор группы")
             @PathVariable("groupId") String groupId) {
+        Logger.log("GET " + GROUPS_PATH_V2 + "/" + groupId + " userId = " + userId);
         Group resultGroup = service.provideGroup(userId, groupId);
         Prefer resultPrefer = service.getPrefer(userId, groupId);
         if (resultGroup == null)
@@ -159,6 +160,7 @@ public class GroupsController {
             @ApiParam(value = "Уникальный идентификатор группы")
             @PathVariable("groupId") String groupId
     ) {
+        Logger.log("POST " + GROUPS_PATH_V1 + "/" + groupId + "/leave userId = " + userId);
         int result = service.leaveGroup(groupId, userId);
         if (result == -1)
             return ResponseEntity.badRequest().build();
@@ -189,6 +191,7 @@ public class GroupsController {
             @RequestHeader("userId") String userId,
             @ApiParam(value = "Уникальный идентификатор группы")
             @PathVariable("groupId") String groupId) {
+        Logger.log("PUT " + GROUPS_PATH_V1 + "/" + groupId + "/gift/receive userId = " + userId);
         int result = service.receiveGift(groupId, userId);
         if (result == -1)
             return ResponseEntity.badRequest().build();
@@ -203,6 +206,7 @@ public class GroupsController {
             @ApiParam(value = "Уникальный идентификатор группы")
             @PathVariable("groupId") String groupId
     ) {
+        Logger.log("PUT " + GROUPS_PATH_V1 + "/" + groupId + "/gift/presented userId" + userId);
         int result = service.presentGift(groupId, userId);
         if (result == -1)
             return ResponseEntity.badRequest().build();
@@ -216,6 +220,7 @@ public class GroupsController {
             @RequestHeader("userId") String userId,
             @ApiParam(value = "Уникальный идентификатор группы")
             @PathVariable("groupId") String groupId) {
+        Logger.log("GET " + GROUPS_PATH_V1 + "/" + groupId + "/gift userId = " + userId);
         ResponsePreferEntity result = service.getGiftInfo(groupId, userId);
         if (result == null)
             return ResponseEntity.badRequest().build();
@@ -229,6 +234,7 @@ public class GroupsController {
             @ApiParam(value = "Уникальный идентификатор группы")
             @PathVariable("groupId") String groupId
     ) {
+        Logger.log("!Deprecated! PUT " + GROUPS_PATH_V1 + "/" + groupId + "/start");
         int result = service._startGroup(groupId);
         if (result == -1)
             return ResponseEntity.badRequest().build();
@@ -242,6 +248,7 @@ public class GroupsController {
             @ApiParam(value = "Уникальный идентификатор группы")
             @PathVariable("groupId") String groupId
     ) {
+        Logger.log("!Deprecated! PUT " + GROUPS_PATH_V1 + "/" + groupId + "/finish");
         int result = service._finishGroup(groupId);
         if (result == -1)
             return ResponseEntity.badRequest().build();

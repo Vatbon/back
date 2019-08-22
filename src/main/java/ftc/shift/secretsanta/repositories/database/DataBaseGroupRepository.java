@@ -291,6 +291,7 @@ public class DataBaseGroupRepository implements GroupRepository {
 
             /*Достаем тело всех участников группы*/
             group.getAllParticipants().clear();
+            group.setAmount(0);
 
             String sqlParts = "select * " +
                     "from USERS_PARTICIPANTS " +

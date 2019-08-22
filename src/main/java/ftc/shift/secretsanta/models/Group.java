@@ -1,6 +1,5 @@
 package ftc.shift.secretsanta.models;
 
-import ftc.shift.secretsanta.util.Logger;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -267,7 +266,6 @@ public class Group implements Cloneable {
 
     @Override
     public Group clone() {
-        Logger.log("groupId = " + this.id + " has " + getAmount() + " participants");
         Group clone = new Group(this.id, this.title, this.startTime, this.endTime, getAmount(), this.amountLimit,
                 this.minValue, this.maxValue, this.method, this.host, this.started, this.finished);
         //implement cloning participants?

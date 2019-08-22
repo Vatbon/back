@@ -2,6 +2,7 @@ package ftc.shift.secretsanta.api;
 
 import ftc.shift.secretsanta.models.User;
 import ftc.shift.secretsanta.services.AuthService;
+import ftc.shift.secretsanta.util.Logger;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -31,8 +32,10 @@ public class AuthController {
             @PathVariable("name") String name
     ) {
         User result = authService.authUser(new User("", name));
+        Logger.log("GET " + AUTH_PATH_V1 + "/" + name);
         if (result == null)
             return ResponseEntity.badRequest().build();
+
         return ResponseEntity.ok(result);
     }
 }

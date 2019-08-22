@@ -2,6 +2,7 @@ package ftc.shift.secretsanta.api;
 
 import ftc.shift.secretsanta.models.User;
 import ftc.shift.secretsanta.services.UserService;
+import ftc.shift.secretsanta.util.Logger;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -25,6 +26,7 @@ public class UserController {
     public ResponseEntity<User> getUser(
             @ApiParam(value = "Уникальный идентификатор пользателя")
             @RequestHeader("userId") String userId) {
+        Logger.log("GET " + USER_PATH_V2 + " userId = " + userId);
         User result = service.provideUser(userId);
         if (result == null)
             return ResponseEntity.badRequest().build();
